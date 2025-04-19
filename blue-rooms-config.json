@@ -2,18 +2,18 @@
   "blueRooms": [
     {
       "building": "building-19",
-      "floor": "floor-1",
-      "rooms": ["101", "103", "112"]
+      "floor": "floor-0",
+      "rooms": ["1"]
     },
     {
-      "building": "building-19-1",
+      "building": "building-19-2",
       "floor": "floor-2",
-      "rooms": ["201", "203"]
+      "rooms": ["27"]
     },
     {
       "building": "building-19-2", 
       "floor": "floor-0",
-      "rooms": ["3", "5", "7"]
+      "rooms": ["3", "6"]
     }
   ]
 }

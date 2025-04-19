@@ -67,13 +67,18 @@ function getDefaultBlueRooms() {
         // Базовая конфигурация с несколькими синими помещениями
         {
             building: "building-19",
-            floor: "floor-1",
-            rooms: ["101", "103"]
+            floor: "floor-0",
+            rooms: ["1"]
         },
         {
             building: "building-19-2",
+            floor: "floor-2",
+            rooms: ["27"]
+        },
+        {
+            building: "building-19-2", 
             floor: "floor-0",
-            rooms: ["3"]
+            rooms: ["3", "6"]
         }
     ];
 }
@@ -772,8 +777,7 @@ function displayRoomInfo(roomId) {
                 <p><strong>Номер помещения:</strong> ${roomNumber}</p>
                 <p><strong>Здание:</strong> ${activeBuilding}</p>
                 <p><strong>Этаж:</strong> ${currentFloor.replace('floor-', '') === '0' ? 'Подвал' : currentFloor.replace('floor-', '') + ' этаж'}</p>
-                <p><strong>Статус:</strong> <span style="color: #0000FF; font-weight: bold;">Синее помещение из конфигурации</span></p>
-                <p><small><em>Это помещение всегда отображается синим цветом согласно файлу конфигурации blue-rooms-config.json</em></small></p>
+                <p><strong>Статус:</strong> <span style="color: #0000FF; font-weight: bold;">Помещение Унивесала</span></p>
             `;
             roomDetails.innerHTML = html;
             return;
