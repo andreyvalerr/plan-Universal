@@ -38,6 +38,19 @@ let roomsData = []; // Данные о помещениях из Google Sheets
 let currentBuilding = 'building-19';
 let currentFloor = 'floor-1';
 
+// Список особых помещений (формат: {building: 'building-19', floor: 'floor-0', room: '1'})
+const specialRooms = [
+    {building: 'building-19', floor: 'floor-0', room: '1'},
+    {building: 'building-19-2', floor: 'floor-0', room: '3'},
+    {building: 'building-19-2', floor: 'floor-2', room: '27'}
+];
+
+// Помещения, которые должны быть отображены синим цветом
+let blueRooms = [];
+
+// Флаг, показывающий, включено ли отображение особых помещений
+let showSpecialRooms = true;
+
 // DOM-элементы
 const mapContainer = document.querySelector('.map-container');
 const mapWrapper = document.querySelector('.map-wrapper');
@@ -48,10 +61,83 @@ const floorGroups = document.querySelectorAll('.floors-group');
 // Инициализация приложения
 // document.addEventListener('DOMContentLoaded', init);
 
+// Получить резервные данные о синих помещениях (если конфигурационный файл не загружен)
+function getDefaultBlueRooms() {
+    return [
+        // Базовая конфигурация с несколькими синими помещениями
+        {
+            building: "building-19",
+            floor: "floor-1",
+            rooms: ["101", "103"]
+        },
+        {
+            building: "building-19-2",
+            floor: "floor-0",
+            rooms: ["3"]
+        }
+    ];
+}
+
+// Загружаем конфигурацию синих помещений
+async function loadBlueRoomsConfig() {
+    try {
+        console.log('Загрузка конфигурации синих помещений...');
+        // Добавляем случайный параметр для предотвращения кэширования
+        const response = await fetch('blue-rooms-config.json?nocache=' + Math.random());
+        
+        // Если файл не найден, просто используем резервную конфигурацию без ошибки
+        if (response.status === 404) {
+            console.warn('Файл конфигурации не найден. Используем резервную конфигурацию.');
+            blueRooms = getDefaultBlueRooms();
+            return;
+        }
+        
+        // Для других ошибок
+        if (!response.ok) {
+            console.warn(`Ошибка HTTP при загрузке конфигурации: ${response.status}. Используем резервную конфигурацию.`);
+            blueRooms = getDefaultBlueRooms();
+            return;
+        }
+        
+        // Пробуем разобрать JSON
+        try {
+            const config = await response.json();
+            console.log('Конфигурация синих помещений загружена:', config);
+            
+            if (config && config.blueRooms) {
+                blueRooms = config.blueRooms;
+            } else {
+                console.warn('В конфигурационном файле отсутствует раздел blueRooms. Используем резервную конфигурацию.');
+                blueRooms = getDefaultBlueRooms();
+            }
+        } catch (jsonError) {
+            console.error('Ошибка при разборе JSON:', jsonError);
+            blueRooms = getDefaultBlueRooms();
+        }
+    } catch (error) {
+        console.error('Ошибка при загрузке конфигурации синих помещений:', error);
+        console.warn('Используем резервную конфигурацию синих помещений.');
+        // Если не удалось загрузить конфигурацию, используем базовую настройку
+        blueRooms = getDefaultBlueRooms();
+    }
+}
+
 async function init() {
     try {
         // Показываем соответствующую группу этажей для начального здания
         showFloorGroupForBuilding(currentBuilding);
+        
+        // Инициализируем синие помещения с резервной конфигурацией на случай ошибок
+        blueRooms = getDefaultBlueRooms();
+        
+        // Пытаемся загрузить конфигурацию синих помещений, но не блокируем инициализацию
+        try {
+            loadBlueRoomsConfig().catch(error => {
+                console.warn("Не удалось загрузить конфигурацию синих помещений, используется резервная:", error);
+            });
+        } catch (configError) {
+            console.warn("Ошибка при попытке загрузить конфигурацию синих помещений:", configError);
+        }
         
         // Загрузка SVG схемы здания 19, этаж 1
         const svg = await loadSVG('building-19_floor-1.svg');
@@ -76,6 +162,9 @@ async function init() {
             
             // Обновляем статусы помещений
             updateRoomStatus();
+            
+            // Инициализируем выделение особых помещений
+            updateSpecialRoomsHighlight();
         } else {
             console.error('Не удалось загрузить SVG-схему');
         }
@@ -144,6 +233,18 @@ function setupEventListeners() {
             updateActiveMap();
         });
     });
+    
+    // Обработчик для переключателя особых помещений
+    const specialRoomsToggle = document.getElementById('special-rooms-toggle');
+    if (specialRoomsToggle) {
+        specialRoomsToggle.addEventListener('change', function() {
+            // Обновляем флаг отображения особых помещений
+            showSpecialRooms = this.checked;
+            
+            // Обновляем отображение особых помещений на всех схемах
+            updateSpecialRoomsHighlight();
+        });
+    }
     
     // Добавляем обработчики для помещений
     setupRoomEventListeners();
@@ -339,7 +440,11 @@ function updateActiveMap() {
             updateRoomStatus();
             
             // Повторное окрашивание через небольшую задержку
-            setTimeout(updateRoomStatus, 100);
+            setTimeout(() => {
+                updateRoomStatus();
+                // Выделяем особые помещения после обновления статусов
+                updateSpecialRoomsHighlight();
+            }, 100);
         }
     }
 }
@@ -369,14 +474,24 @@ async function fetchDataFromGoogleSheets() {
         // Обновляем статусы помещений на схеме
         updateRoomStatus();
         
+        // Выделяем особые помещения
+        updateSpecialRoomsHighlight();
+        
         // Добавляем повторную попытку окрашивания
-        setTimeout(updateRoomStatus, 300);
+        setTimeout(() => {
+            updateRoomStatus();
+            updateSpecialRoomsHighlight();
+        }, 300);
     } catch (error) {
         console.error('Ошибка при получении данных из Google Sheets:', error);
         // Используем тестовые данные при ошибке
         roomsData = getMockData();
         updateRoomStatus();
-        setTimeout(updateRoomStatus, 300);
+        updateSpecialRoomsHighlight();
+        setTimeout(() => {
+            updateRoomStatus();
+            updateSpecialRoomsHighlight();
+        }, 300);
     }
 }
 
@@ -414,111 +529,255 @@ function translateLatinToCyrillic(text) {
     return result;
 }
 
+// Функция для проверки, находится ли помещение в списке тех, что должны быть отображены синим цветом
+function shouldBeBlue(roomNumber, building, floor) {
+    // Проверяем наличие конфигурации
+    if (!blueRooms || !Array.isArray(blueRooms) || blueRooms.length === 0) {
+        return false;
+    }
+    
+    // Приводим параметры к формату, который используется в конфигурации
+    const normalizedRoomNumber = normalizeRoomNumber(roomNumber);
+    const buildingKey = building.startsWith('building-') ? building : `building-${building}`;
+    const floorKey = floor.startsWith('floor-') ? floor : `floor-${floor}`;
+    
+    // Ищем в массиве blueRooms с обработкой возможных ошибок
+    try {
+        const foundConfig = blueRooms.find(config => {
+            if (!config || typeof config !== 'object') return false;
+            if (config.building !== buildingKey || config.floor !== floorKey) return false;
+            if (!Array.isArray(config.rooms)) return false;
+            
+            return config.rooms.some(room => {
+                try {
+                    return normalizeRoomNumber(room) === normalizedRoomNumber;
+                } catch (e) {
+                    console.warn(`Ошибка при нормализации номера комнаты: ${room}`, e);
+                    return false;
+                }
+            });
+        });
+        
+        return !!foundConfig; // Возвращаем true, если нашли соответствие
+    } catch (error) {
+        console.warn('Ошибка при проверке синих помещений:', error);
+        return false;
+    }
+}
+
 // Обновление статусов помещений на схеме
 function updateRoomStatus() {
-    const roomElements = document.querySelectorAll('[id^="room-"]');
-    console.log('Данные о помещениях:', roomsData);
-    console.log('Найдено элементов на схеме:', roomElements.length);
-    console.log('Текущий этаж:', currentFloor);
-    
-    // Если данных или элементов схемы нет, ничего не делаем
-    if (!roomsData.length || !roomElements.length) {
-        console.warn('Нет данных о помещениях или элементов на схеме');
-        return;
-    }
+    try {
+        const roomElements = document.querySelectorAll('[id^="room-"]');
+        console.log('Данные о помещениях:', roomsData);
+        console.log('Найдено элементов на схеме:', roomElements.length);
+        console.log('Текущий этаж:', currentFloor);
+        console.log('Конфигурация синих помещений:', blueRooms);
+        
+        // Если элементов схемы нет, ничего не делаем
+        if (!roomElements || !roomElements.length) {
+            console.warn('Нет элементов на схеме');
+            return;
+        }
+        
+        // Убедимся, что blueRooms инициализирован
+        if (!blueRooms || !Array.isArray(blueRooms)) {
+            console.warn('Конфигурация синих помещений не инициализирована, используем пустой массив');
+            blueRooms = [];
+        }
+        
+        // Сначала создадим индексированную карту данных для быстрого доступа (если есть данные)
+        const roomDataMap = {};
+        
+        if (roomsData && Array.isArray(roomsData) && roomsData.length > 0) {
+            // Создаем уникальный ключ для каждого помещения на основе номера, этажа и здания
+            roomsData.forEach(room => {
+                try {
+                    if (!room || !room.number) return; // skip
+                    
+                    const normalizedNumber = normalizeRoomNumber(room.number);
+                    // Создаем составной ключ, включающий информацию об этаже и здании
+                    const floorKey = room.floor || 'unknown';
+                    const buildingKey = room.building || 'unknown';
+                    const compositeKey = `${normalizedNumber}_${floorKey}_${buildingKey}`;
+                    
+                    // Также создаем ключ только по номеру и этажу (более важный)
+                    const floorNumberKey = `${normalizedNumber}_${floorKey}`;
+                    
+                    // И простой ключ только по номеру (наименее приоритетный)
+                    const simpleKey = `${normalizedNumber}`;
+                    
+                    // Сохраняем данные по всем ключам для разных уровней соответствия
+                    roomDataMap[compositeKey] = room;
+                    if (!roomDataMap[floorNumberKey]) roomDataMap[floorNumberKey] = room;
+                    if (!roomDataMap[simpleKey] && !room.tenant) roomDataMap[simpleKey] = room; // только для свободных
+                } catch (e) {
+                    console.warn('Ошибка при индексации данных помещения:', e);
+                }
+            });
+            
+            console.log('Индексированные данные:', roomDataMap);
+        } else {
+            console.warn('Нет данных о помещениях для индексации');
+        }
 
-    // Сначала создадим индексированную карту данных для быстрого доступа
-    const roomDataMap = {};
-    
-    // Создаем уникальный ключ для каждого помещения на основе номера, этажа и здания
-    roomsData.forEach(room => {
-        const normalizedNumber = normalizeRoomNumber(room.number);
-        // Создаем составной ключ, включающий информацию об этаже и здании
-        const floorKey = room.floor || 'unknown';
-        const buildingKey = room.building || 'unknown';
-        const compositeKey = `${normalizedNumber}_${floorKey}_${buildingKey}`;
-        
-        // Также создаем ключ только по номеру и этажу (более важный)
-        const floorNumberKey = `${normalizedNumber}_${floorKey}`;
-        
-        // И простой ключ только по номеру (наименее приоритетный)
-        const simpleKey = `${normalizedNumber}`;
-        
-        // Сохраняем данные по всем ключам для разных уровней соответствия
-        roomDataMap[compositeKey] = room;
-        if (!roomDataMap[floorNumberKey]) roomDataMap[floorNumberKey] = room;
-        if (!roomDataMap[simpleKey] && !room.tenant) roomDataMap[simpleKey] = room; // только для свободных
-    });
-    
-    console.log('Индексированные данные:', roomDataMap);
-
-    roomElements.forEach(roomElement => {
-        if (roomElement.id === 'corridor' || roomElement.id.startsWith('corridor_')) return;
+        roomElements.forEach(roomElement => {
+            try {
+                if (!roomElement || !roomElement.id) return; // пропускаем некорректные элементы
+                if (roomElement.id === 'corridor' || roomElement.id.startsWith('corridor_')) return;
         
         // Получаем номер помещения из id и нормализуем
-        const roomNumber = normalizeRoomNumber(roomElement.id.split('-')[1]);
+        const roomNumber = roomElement.id.split('-')[1];
+        const normalizedRoomNumber = normalizeRoomNumber(roomNumber);
         
         // Получаем текущее здание и этаж из активной схемы
         const activeBuilding = currentBuilding.replace('building-', '');
         
-        // Используем тот же алгоритм поиска, что и в displayRoomInfo
-        // Сначала ищем точное совпадение (здание + этаж + номер)
-        const roomData = roomsData.find(room => {
-            const normalizedRoomNum = normalizeRoomNumber(room.number);
-            return normalizedRoomNum === roomNumber && 
-                  room.floor === currentFloor && 
-                  (room.building === activeBuilding || !room.building);
-        });
+        // Проверяем, должно ли помещение быть синим согласно конфигурации
+        const isBlueRoom = shouldBeBlue(roomNumber, currentBuilding, currentFloor);
         
-        // Определяем цвет и статус помещения
-        const isOccupied = roomData && roomData.tenant;
-        const fillColor = isOccupied ? '#F08080' : '#A8D299';
-        const statusClass = isOccupied ? 'occupied' : 'free';
-        
-        console.log(`Помещение ${roomNumber}, занято: ${isOccupied}, цвет: ${fillColor}`);
-        
-        roomElement.classList.add(statusClass);
-        roomElement.classList.remove(statusClass === 'occupied' ? 'free' : 'occupied');
-
-        // Универсально перекрашиваем все SVG-фигуры внутри помещения
-        const svgShapes = roomElement.querySelectorAll('rect, path, polygon, polyline, circle, ellipse');
-        svgShapes.forEach(shape => {
-            // Только если fill не none/black или явно задан
-            const currentFill = shape.getAttribute('fill');
-            if (currentFill === null || currentFill === 'none' || currentFill === '#000' || currentFill === '#000000') return;
-            shape.style.fill = fillColor;
-            shape.setAttribute('fill', fillColor);
-        });
-
-        // Для масок: перекрашиваем все элементы с fill внутри группы
-        if (roomElement.querySelector('[mask]')) {
-            const allWithFill = roomElement.querySelectorAll('[fill]');
-            allWithFill.forEach(el => {
-                const fill = el.getAttribute('fill');
-                if (fill && fill !== 'none' && fill !== 'black' && fill !== '#000000') {
-                    el.setAttribute('fill', fillColor);
-                }
+        if (isBlueRoom) {
+            // Если помещение должно быть синим, удаляем классы free/occupied и добавляем blue-room
+            roomElement.classList.remove('free', 'occupied');
+            roomElement.classList.add('blue-room');
+            
+            // Универсально перекрашиваем все SVG-фигуры внутри помещения в синий
+            const svgShapes = roomElement.querySelectorAll('rect, path, polygon, polyline, circle, ellipse');
+            svgShapes.forEach(shape => {
+                // Только если fill не none/black или явно задан
+                const currentFill = shape.getAttribute('fill');
+                if (currentFill === null || currentFill === 'none' || currentFill === '#000' || currentFill === '#000000') return;
+                shape.style.fill = '#0000FF'; // Синий цвет
+                shape.setAttribute('fill', '#0000FF');
             });
-        }
-
-        // Логируем несовпадения для отладки
-        if (!roomData) {
-            console.warn(`Нет данных о помещении для SVG id: ${roomElement.id} (нормализовано: ${roomNumber})`);
-        }
-    });
+            
+            // Для масок: перекрашиваем все элементы с fill внутри группы
+            if (roomElement.querySelector('[mask]')) {
+                const allWithFill = roomElement.querySelectorAll('[fill]');
+                allWithFill.forEach(el => {
+                    const fill = el.getAttribute('fill');
+                    if (fill && fill !== 'none' && fill !== 'black' && fill !== '#000000') {
+                        el.setAttribute('fill', '#0000FF');
+                    }
+                });
+            }
+            
+            console.log(`Помещение ${roomNumber} отображено синим цветом согласно конфигурации`);
+        } else if (roomsData.length) {
+            // Если помещение НЕ должно быть синим, использовать обычную логику занято/свободно
+            // Используем тот же алгоритм поиска, что и в displayRoomInfo
+            // Сначала ищем точное совпадение (здание + этаж + номер)
+            const roomData = roomsData.find(room => {
+                const normalizedRoomNum = normalizeRoomNumber(room.number);
+                return normalizedRoomNum === normalizedRoomNumber && 
+                      room.floor === currentFloor && 
+                      (room.building === activeBuilding || !room.building);
+            });
+            
+            // Определяем цвет и статус помещения
+            const isOccupied = roomData && roomData.tenant;
+            const fillColor = isOccupied ? '#F08080' : '#A8D299';
+            const statusClass = isOccupied ? 'occupied' : 'free';
+            
+            console.log(`Помещение ${roomNumber}, занято: ${isOccupied}, цвет: ${fillColor}`);
+            
+            roomElement.classList.remove('blue-room');
+            roomElement.classList.add(statusClass);
+            roomElement.classList.remove(statusClass === 'occupied' ? 'free' : 'occupied');
+    
+            // Универсально перекрашиваем все SVG-фигуры внутри помещения
+            const svgShapes = roomElement.querySelectorAll('rect, path, polygon, polyline, circle, ellipse');
+            svgShapes.forEach(shape => {
+                // Только если fill не none/black или явно задан
+                const currentFill = shape.getAttribute('fill');
+                if (currentFill === null || currentFill === 'none' || currentFill === '#000' || currentFill === '#000000') return;
+                shape.style.fill = fillColor;
+                shape.setAttribute('fill', fillColor);
+            });
+    
+            // Для масок: перекрашиваем все элементы с fill внутри группы
+            if (roomElement.querySelector('[mask]')) {
+                const allWithFill = roomElement.querySelectorAll('[fill]');
+                allWithFill.forEach(el => {
+                    const fill = el.getAttribute('fill');
+                    if (fill && fill !== 'none' && fill !== 'black' && fill !== '#000000') {
+                        el.setAttribute('fill', fillColor);
+                    }
+                });
+            }
+    
+            // Логируем несовпадения для отладки
+            if (!roomData) {
+                console.warn(`Нет данных о помещении для SVG id: ${roomElement.id} (нормализовано: ${normalizedRoomNumber})`);
+            }
+        } else {
+            // Если нет данных из Google Sheets, по умолчанию делаем помещение зеленым
+            if (!roomElement.classList.contains('blue-room')) {
+                roomElement.classList.remove('occupied');
+                roomElement.classList.add('free');
+                
+                // Универсально перекрашиваем все SVG-фигуры внутри помещения
+                const svgShapes = roomElement.querySelectorAll('rect, path, polygon, polyline, circle, ellipse');
+                svgShapes.forEach(shape => {
+                    // Только если fill не none/black или явно задан
+                    const currentFill = shape.getAttribute('fill');
+                    if (currentFill === null || currentFill === 'none' || currentFill === '#000' || currentFill === '#000000') return;
+                    shape.style.fill = '#A8D299'; // Зеленый цвет
+                    shape.setAttribute('fill', '#A8D299');
+                });
+                    }
+                }
+            } catch (roomError) {
+                console.warn('Ошибка при обработке помещения:', roomError);
+            }
+        });
+        
+        // После обновления статусов помещений, обновим выделение особых помещений
+        updateSpecialRoomsHighlight();
+    } catch (error) {
+        console.error('Ошибка при обновлении статусов помещений:', error);
+    }
 }
 
 // Отображение информации о выбранном помещении
 function displayRoomInfo(roomId) {
-    // Получаем номер помещения из id (например, из "room-103" получаем "103")
-    const roomNumber = roomId.split('-')[1];
-    
-    // Нормализуем номер помещения
-    const normalizedRoomNumber = normalizeRoomNumber(roomNumber);
-    
-    // Получаем текущее здание и этаж
-    const activeBuilding = currentBuilding.replace('building-', '');
-    console.log(`Запрос информации для помещения: ${roomNumber}, здание: ${activeBuilding}, этаж: ${currentFloor}`);
+    try {
+        if (!roomId || !roomDetails) {
+            console.warn('Недостаточно данных для отображения информации о помещении');
+            return;
+        }
+        
+        // Получаем номер помещения из id (например, из "room-103" получаем "103")
+        const roomIdParts = roomId.split('-');
+        if (roomIdParts.length < 2) {
+            console.warn('Некорректный ID помещения:', roomId);
+            return;
+        }
+        
+        const roomNumber = roomIdParts[1];
+        
+        // Нормализуем номер помещения
+        const normalizedRoomNumber = normalizeRoomNumber(roomNumber);
+        
+        // Получаем текущее здание и этаж
+        const activeBuilding = currentBuilding.replace('building-', '');
+        console.log(`Запрос информации для помещения: ${roomNumber}, здание: ${activeBuilding}, этаж: ${currentFloor}`);
+        
+        // Проверяем, является ли помещение синим из конфигурации
+        const isBlueRoom = shouldBeBlue(roomNumber, currentBuilding, currentFloor);
+        
+        // Если помещение из конфигурации (синее), показываем соответствующую информацию
+        if (isBlueRoom) {
+            const html = `
+                <p><strong>Номер помещения:</strong> ${roomNumber}</p>
+                <p><strong>Здание:</strong> ${activeBuilding}</p>
+                <p><strong>Этаж:</strong> ${currentFloor.replace('floor-', '') === '0' ? 'Подвал' : currentFloor.replace('floor-', '') + ' этаж'}</p>
+                <p><strong>Статус:</strong> <span style="color: #0000FF; font-weight: bold;">Синее помещение из конфигурации</span></p>
+                <p><small><em>Это помещение всегда отображается синим цветом согласно файлу конфигурации blue-rooms-config.json</em></small></p>
+            `;
+            roomDetails.innerHTML = html;
+            return;
+        }
     
     // Создаем составные ключи для поиска
     const fullKey = `${normalizedRoomNumber}_${currentFloor}_${activeBuilding}`;
@@ -560,54 +819,186 @@ function displayRoomInfo(roomId) {
     // Если ничего не найдено, показываем базовую информацию
     console.log('Данные о помещении не найдены, отображаем базовую информацию');
     displayEmptyRoomInfo(roomNumber, activeBuilding);
+    } catch (error) {
+        console.error('Ошибка при отображении информации о помещении:', error);
+        if (roomDetails) {
+            roomDetails.innerHTML = `<p>Произошла ошибка при получении информации о помещении.</p>`;
+        }
+    }
 }
 
 // Отображение данных о помещении (выделено в отдельную функцию)
 function displayRoomInfoData(roomNumber, roomData, activeBuilding) {
-    let html = `<p><strong>Номер помещения:</strong> ${roomNumber}</p>`;
-    
-    // Добавляем информацию о здании, если есть
-    if (roomData.building) {
-        html += `<p><strong>Здание:</strong> ${roomData.building}</p>`;
-    } else {
-        html += `<p><strong>Здание:</strong> ${activeBuilding}</p>`;
+    try {
+        if (!roomDetails) return;
+        
+        let html = `<p><strong>Номер помещения:</strong> ${roomNumber}</p>`;
+        
+        // Добавляем информацию о здании, если есть
+        if (roomData && roomData.building) {
+            html += `<p><strong>Здание:</strong> ${roomData.building}</p>`;
+        } else {
+            html += `<p><strong>Здание:</strong> ${activeBuilding}</p>`;
+        }
+        
+        // Добавляем информацию об этаже, если есть
+        if (roomData && roomData.floor) {
+            const floorNumber = roomData.floor.replace('floor-', '');
+            const floorName = floorNumber === '0' ? 'Подвал' : `${floorNumber} этаж`;
+            html += `<p><strong>Этаж:</strong> ${floorName}</p>`;
+        } else {
+            const floorNumber = currentFloor.replace('floor-', '');
+            const floorName = floorNumber === '0' ? 'Подвал' : `${floorNumber} этаж`;
+            html += `<p><strong>Этаж:</strong> ${floorName}</p>`;
+        }
+        
+        html += `<p><strong>Статус:</strong> ${roomData && roomData.tenant ? 'Занято' : 'Свободно'}</p>`;
+        
+        if (roomData && roomData.tenant) {
+            // Если помещение занято, отображаем информацию об арендаторе
+            html += `<p><strong>Арендатор:</strong> ${roomData.tenant}</p>`;
+            html += `<p><strong>Договор:</strong> ${roomData.contract || 'Нет данных'}</p>`;
+            html += `<p><strong>Арендная плата:</strong> ${roomData.rent || 'Нет данных'} руб./мес.</p>`;
+        }
+        
+        roomDetails.innerHTML = html;
+    } catch (error) {
+        console.error('Ошибка при отображении данных о помещении:', error);
+        if (roomDetails) {
+            roomDetails.innerHTML = `<p><strong>Номер помещения:</strong> ${roomNumber}</p><p>Ошибка при отображении данных</p>`;
+        }
     }
-    
-    // Добавляем информацию об этаже, если есть
-    if (roomData.floor) {
-        const floorNumber = roomData.floor.replace('floor-', '');
-        const floorName = floorNumber === '0' ? 'Подвал' : `${floorNumber} этаж`;
-        html += `<p><strong>Этаж:</strong> ${floorName}</p>`;
-    } else {
-        const floorNumber = currentFloor.replace('floor-', '');
-        const floorName = floorNumber === '0' ? 'Подвал' : `${floorNumber} этаж`;
-        html += `<p><strong>Этаж:</strong> ${floorName}</p>`;
-    }
-    
-    html += `<p><strong>Статус:</strong> ${roomData.tenant ? 'Занято' : 'Свободно'}</p>`;
-    
-    if (roomData.tenant) {
-        // Если помещение занято, отображаем информацию об арендаторе
-        html += `<p><strong>Арендатор:</strong> ${roomData.tenant}</p>`;
-        html += `<p><strong>Договор:</strong> ${roomData.contract || 'Нет данных'}</p>`;
-        html += `<p><strong>Арендная плата:</strong> ${roomData.rent || 'Нет данных'} руб./мес.</p>`;
-    }
-    
-    roomDetails.innerHTML = html;
 }
 
 // Отображение информации о пустом помещении
 function displayEmptyRoomInfo(roomNumber, activeBuilding) {
-    const floorNumber = currentFloor.replace('floor-', '');
-    const floorName = floorNumber === '0' ? 'Подвал' : `${floorNumber} этаж`;
+    try {
+        if (!roomDetails) return;
+        
+        const floorNumber = currentFloor ? currentFloor.replace('floor-', '') : '1';
+        const floorName = floorNumber === '0' ? 'Подвал' : `${floorNumber} этаж`;
+        
+        roomDetails.innerHTML = `
+            <p><strong>Номер помещения:</strong> ${roomNumber}</p>
+            <p><strong>Здание:</strong> ${activeBuilding}</p>
+            <p><strong>Этаж:</strong> ${floorName}</p>
+            <p><strong>Статус:</strong> Свободно</p>
+            <p>Нет дополнительных данных</p>
+        `;
+    } catch (error) {
+        console.error('Ошибка при отображении информации о пустом помещении:', error);
+        if (roomDetails) {
+            roomDetails.innerHTML = `<p><strong>Номер помещения:</strong> ${roomNumber}</p><p>Ошибка при отображении данных</p>`;
+        }
+    }
+}
+
+// Функция для выделения особых помещений
+function updateSpecialRoomsHighlight() {
+    try {
+        // Если отображение особых помещений отключено, удаляем классы, 
+        // кроме помещения 1 в здании 19, в подвале
+        if (!showSpecialRooms) {
+            document.querySelectorAll('.special-room').forEach(room => {
+                try {
+                    // Проверяем, не является ли это помещение номер 1 в здании 19, этаж 0
+                    const isRoom1Building19 = room.id === "room-1" && 
+                        room.closest('.map-wrapper') && 
+                        room.closest('.map-wrapper').dataset.building === "building-19" && 
+                        room.closest('.map-wrapper').dataset.floor === "floor-0";
+                    
+                    // Если это НЕ помещение 1 в здании 19, подвал - удаляем класс
+                    if (!isRoom1Building19) {
+                        room.classList.remove('special-room');
+                    }
+                } catch (e) {
+                    console.warn('Ошибка при обработке особого помещения:', e);
+                }
+            });
+            
+            // Специально добавляем класс для помещения 1 в здании 19, подвал
+            const building19Floor0 = document.querySelector('.map-wrapper[data-building="building-19"][data-floor="floor-0"]');
+            if (building19Floor0) {
+                const room1 = building19Floor0.querySelector('#room-1');
+                if (room1) {
+                    room1.classList.add('special-room');
+                    console.log('Помещение 1 в здании 19, подвал всегда будет выделено синим.');
+                }
+            }
+            
+            // Возвращаемся, чтобы не применять дальнейшую логику
+            return;
+        }
     
-    roomDetails.innerHTML = `
-        <p><strong>Номер помещения:</strong> ${roomNumber}</p>
-        <p><strong>Здание:</strong> ${activeBuilding}</p>
-        <p><strong>Этаж:</strong> ${floorName}</p>
-        <p><strong>Статус:</strong> Свободно</p>
-        <p>Нет дополнительных данных</p>
-    `;
+        // Убедимся, что specialRooms инициализирован
+        if (!specialRooms || !Array.isArray(specialRooms)) {
+            console.warn('specialRooms не инициализирован или не является массивом');
+            return;
+        }
+    
+        // Для каждого помещения из списка особых
+        specialRooms.forEach(specialRoom => {
+            try {
+                // Проверка корректности объекта specialRoom
+                if (!specialRoom || !specialRoom.building || !specialRoom.floor || !specialRoom.room) {
+                    console.warn('Некорректные данные особого помещения:', specialRoom);
+                    return; // continue для forEach
+                }
+                
+                // Находим схему для здания и этажа
+                const wrapper = document.querySelector(`.map-wrapper[data-building="${specialRoom.building}"][data-floor="${specialRoom.floor}"]`);
+                
+                if (wrapper) {
+                    // Находим элемент помещения
+                    const roomElement = wrapper.querySelector(`#room-${specialRoom.room}`);
+                    
+                    if (roomElement) {
+                        // Проверяем, не является ли это помещение уже синим (из списка blue-rooms)
+                        if (!roomElement.classList.contains('blue-room')) {
+                            // Добавляем класс особого помещения только если оно не в списке blue-rooms
+                            roomElement.classList.add('special-room');
+                            console.log(`Выделено особое помещение: ${specialRoom.room} в ${specialRoom.building}, ${specialRoom.floor}`);
+                        }
+                    } else {
+                        console.warn(`Не найден элемент для особого помещения: ${specialRoom.room} в ${specialRoom.building}, ${specialRoom.floor}`);
+                    }
+                }
+            } catch (error) {
+                console.warn(`Ошибка при обработке особого помещения ${specialRoom?.room}:`, error);
+            }
+        });
+        
+        // Отдельно проверим текущую активную схему для немедленного применения стилей
+        if (currentBuilding && currentFloor) {
+            try {
+                const currentSpecialRooms = specialRooms.filter(
+                    r => r && r.building === currentBuilding && r.floor === currentFloor
+                );
+                
+                if (currentSpecialRooms.length > 0) {
+                    const activeWrapper = document.querySelector('.map-wrapper.active');
+                    if (activeWrapper) {
+                        currentSpecialRooms.forEach(specialRoom => {
+                            try {
+                                if (!specialRoom || !specialRoom.room) return; // skip
+                                
+                                const roomElement = activeWrapper.querySelector(`#room-${specialRoom.room}`);
+                                if (roomElement && !roomElement.classList.contains('blue-room')) {
+                                    roomElement.classList.add('special-room');
+                                }
+                            } catch (e) {
+                                console.warn(`Ошибка при обработке текущего особого помещения ${specialRoom?.room}:`, e);
+                            }
+                        });
+                    }
+                }
+            } catch (error) {
+                console.warn('Ошибка при обработке особых помещений для текущего этажа:', error);
+            }
+        }
+    } catch (error) {
+        console.error('Ошибка при обновлении выделения особых помещений:', error);
+    }
 }
 
 // Тестовые данные для демонстрации (используются, если API не настроен)

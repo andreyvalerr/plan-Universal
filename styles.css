@@ -229,6 +229,17 @@ svg {
     transition: fill 0.3s ease;
 }
 
+/* Для синих помещений из конфигурации */
+.blue-room rect, 
+.blue-room path, 
+.blue-room polygon, 
+.blue-room polyline, 
+.blue-room circle, 
+.blue-room ellipse {
+    fill: #0000FF !important; /* Синий цвет */
+    transition: fill 0.3s ease;
+}
+
 /* Коридоры и служебные помещения */
 [id^="corridor"] rect,
 [id^="corridor"] path {
@@ -244,6 +255,17 @@ svg {
 .active-room ellipse {
     stroke-width: 2px;
     stroke: #2980b9 !important;
+}
+
+/* Выделение особых помещений (постоянное выделение) */
+.special-room rect,
+.special-room path,
+.special-room polygon,
+.special-room polyline,
+.special-room circle,
+.special-room ellipse {
+    fill: #0000FF !important; /* Насыщенный синий цвет */
+    transition: fill 0.3s ease;
 }
 
 /* Информация о комнате */
@@ -296,6 +318,75 @@ svg {
 
 .color-sample.occupied {
     background-color: #F08080;
+}
+
+.color-sample.special {
+    background-color: #0000FF;
+}
+
+.color-sample.blue {
+    background-color: #0000FF;
+}
+
+/* Стили для переключателя */
+.toggle-container {
+    margin-top: 15px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.slider.round {
+    border-radius: 20px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
 
 /* Google Sheets iframe */
