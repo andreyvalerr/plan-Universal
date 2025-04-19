@@ -1,0 +1,120 @@
+<svg width="1246" height="640" viewBox="0 0 1246 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="building-19_floor-0">
+<g id="room-7">
+<rect id="room-7_2" x="110.5" y="112.5" width="143" height="231" fill="#A8D299" stroke="black"/>
+<text id="7" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="176" y="230.273">7</tspan></text>
+</g>
+<g id="room-9">
+<rect id="room-9_2" x="376.5" y="112.5" width="74" height="231" fill="#A8D299" stroke="black"/>
+<text id="9" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="406" y="230.273">9</tspan></text>
+</g>
+<g id="room-10">
+<rect id="room-10_2" x="451.5" y="112.5" width="106" height="231" fill="#A8D299" stroke="black"/>
+<text id="10" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="494" y="228.273">10</tspan></text>
+</g>
+<g id="room-11">
+<rect id="room-11_2" x="558.5" y="112.5" width="182" height="231" fill="#A8D299" stroke="black"/>
+<text id="11" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="643" y="228.273">11</tspan></text>
+</g>
+<g id="corridor">
+<mask id="path-9-inside-1_10_402" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M838 209H741V274H770V344H1148V274H838V209Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M838 209H741V274H770V344H1148V274H838V209Z" fill="#D9D9D9"/>
+<path d="M741 209V208H740V209H741ZM838 209H839V208H838V209ZM741 274H740V275H741V274ZM770 274H771V273H770V274ZM770 344H769V345H770V344ZM1148 344V345H1149V344H1148ZM1148 274H1149V273H1148V274ZM838 274H837V275H838V274ZM741 210H838V208H741V210ZM742 274V209H740V274H742ZM770 273H741V275H770V273ZM771 344V274H769V344H771ZM1148 343H770V345H1148V343ZM1147 274V344H1149V274H1147ZM838 275H1148V273H838V275ZM837 209V274H839V209H837Z" fill="black" mask="url(#path-9-inside-1_10_402)"/>
+</g>
+<rect id="corridor_2" x="770.5" y="112.5" width="67" height="96" fill="#D9D9D9" stroke="black"/>
+<g id="room-12a">
+<rect id="room-12a_2" x="838.5" y="112.5" width="219" height="161" fill="#A8D299" stroke="black"/>
+<text id="12a" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="931" y="168.273">12а</tspan></text>
+</g>
+<g id="room-12б">
+<rect id="room-12б_2" x="1058.5" y="112.5" width="89" height="161" fill="#A8D299" stroke="black"/>
+<text id="12б" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="1086" y="168.273">12б</tspan></text>
+</g>
+<rect id="corridor_3" x="1180.5" y="112.5" width="65" height="231" fill="#D9D9D9" stroke="black"/>
+<rect id="corridor_4" x="182.5" y="382.5" width="71" height="226" fill="#D9D9D9" stroke="black"/>
+<g id="room-6в">
+<rect id="room-6в_2" x="276.5" y="382.5" width="159" height="226" fill="#A8D299" stroke="black"/>
+<text id="6в" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="351" y="491.273">6в</tspan></text>
+</g>
+<g id="room-6б">
+<rect id="room-6б_2" x="436.5" y="382.5" width="187" height="226" fill="#A8D299" stroke="black"/>
+<text id="6б" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="516" y="491.273">6б</tspan></text>
+</g>
+<g id="room-6а">
+<g id="room-6а_2">
+<mask id="path-22-inside-2_10_402" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M624 437H704V439L741 472V609H704H624V437Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M624 437H704V439L741 472V609H704H624V437Z" fill="#A8D299"/>
+<path d="M704 437H705V436H704V437ZM624 437V436H623V437H624ZM704 439H703V439.448L703.334 439.746L704 439ZM741 472H742V471.552L741.666 471.254L741 472ZM741 609V610H742V609H741ZM624 609H623V610H624V609ZM704 436H624V438H704V436ZM705 439V437H703V439H705ZM741.666 471.254L704.666 438.254L703.334 439.746L740.334 472.746L741.666 471.254ZM740 472V609H742V472H740ZM741 608H704V610H741V608ZM624 610H704V608H624V610ZM623 437V609H625V437H623Z" fill="black" mask="url(#path-22-inside-2_10_402)"/>
+</g>
+<text id="6а" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="670" y="529.273">6а</tspan></text>
+</g>
+<g id="corridor_5">
+<mask id="path-25-inside-3_10_402" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M741 382H624V437H702L741 472V437V382Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M741 382H624V437H702L741 472V437V382Z" fill="#D9D9D9"/>
+<path d="M624 382V381H623V382H624ZM741 382H742V381H741V382ZM624 437H623V438H624V437ZM702 437L702.668 436.256L702.383 436H702V437ZM741 472L740.332 472.744L742 474.241V472H741ZM624 383H741V381H624V383ZM625 437V382H623V437H625ZM702 436H624V438H702V436ZM701.332 437.744L740.332 472.744L741.668 471.256L702.668 436.256L701.332 437.744ZM742 472V437H740V472H742ZM740 382V437H742V382H740Z" fill="black" mask="url(#path-25-inside-3_10_402)"/>
+</g>
+<g id="room-5б">
+<g id="room-5б_2">
+<mask id="path-27-inside-4_10_402" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M770 472L839 437V472H838V609H770V472Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M770 472L839 437V472H838V609H770V472Z" fill="#A8D299"/>
+<path d="M839 437H840V435.371L838.548 436.108L839 437ZM770 472L769.548 471.108L769 471.386V472H770ZM839 472V473H840V472H839ZM838 472V471H837V472H838ZM838 609V610H839V609H838ZM770 609H769V610H770V609ZM838.548 436.108L769.548 471.108L770.452 472.892L839.452 437.892L838.548 436.108ZM840 472V437H838V472H840ZM838 473H839V471H838V473ZM837 472V609H839V472H837ZM838 608H770V610H838V608ZM771 609V472H769V609H771Z" fill="black" mask="url(#path-27-inside-4_10_402)"/>
+</g>
+<text id="5б" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="791" y="529.273">5б</tspan></text>
+</g>
+<g id="corridor_6">
+<mask id="path-30-inside-5_10_402" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1246 382H770V437V472L839 437H1246V382Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1246 382H770V437V472L839 437H1246V382Z" fill="#D9D9D9"/>
+<path d="M770 382V381H769V382H770ZM1246 382H1247V381H1246V382ZM770 472H769V473.629L770.452 472.892L770 472ZM839 437V436H838.761L838.548 436.108L839 437ZM1246 437V438H1247V437H1246ZM770 383H1246V381H770V383ZM771 437V382H769V437H771ZM769 437V472H771V437H769ZM770.452 472.892L839.452 437.892L838.548 436.108L769.548 471.108L770.452 472.892ZM1246 436H839V438H1246V436ZM1245 382V437H1247V382H1245Z" fill="black" mask="url(#path-30-inside-5_10_402)"/>
+</g>
+<g id="room-5а">
+<rect id="room-5а_2" x="838.5" y="437.5" width="71" height="171" fill="#A8D299" stroke="black"/>
+<text id="5а" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="863" y="530.273">5а</tspan></text>
+</g>
+<g id="room-4">
+<rect id="room-4_2" x="910.5" y="437.5" width="70" height="171" fill="#A8D299" stroke="black"/>
+<text id="4" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="939" y="530.273">4</tspan></text>
+</g>
+<g id="room-3">
+<rect id="room-3_2" x="981.5" y="437.5" width="67" height="171" fill="#A8D299" stroke="black"/>
+<text id="3" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="1008" y="529.273">3</tspan></text>
+</g>
+<g id="room-2">
+<rect id="room-2_2" x="1049.5" y="437.5" width="60" height="171" fill="#A8D299" stroke="black"/>
+<text id="2" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="1074" y="529.273">2</tspan></text>
+</g>
+<g id="room-1">
+<rect id="room-1_2" x="1110.5" y="437.5" width="135" height="171" fill="#A8D299" stroke="black"/>
+<text id="1" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="1173" y="530.273">1</tspan></text>
+</g>
+<g id="room-8">
+<g id="room-8_2">
+<mask id="path-42-inside-6_10_402" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M267 0H462V75H336V112H354V344H276V112H293V75H267V0Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M267 0H462V75H336V112H354V344H276V112H293V75H267V0Z" fill="#A8D299"/>
+<path d="M462 0H463V-1H462V0ZM267 0V-1H266V0H267ZM462 75V76H463V75H462ZM336 75V74H335V75H336ZM336 112H335V113H336V112ZM354 112H355V111H354V112ZM354 344V345H355V344H354ZM276 344H275V345H276V344ZM276 112V111H275V112H276ZM293 112V113H294V112H293ZM293 75H294V74H293V75ZM267 75H266V76H267V75ZM462 -1H267V1H462V-1ZM463 75V0H461V75H463ZM336 76H462V74H336V76ZM335 75V112H337V75H335ZM354 111H336V113H354V111ZM355 344V112H353V344H355ZM276 345H354V343H276V345ZM275 112V344H277V112H275ZM293 111H276V113H293V111ZM294 112V75H292V112H294ZM267 76H293V74H267V76ZM266 0V75H268V0H266Z" fill="black" mask="url(#path-42-inside-6_10_402)"/>
+</g>
+<text id="8" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="313" y="230.273">8</tspan></text>
+</g>
+<g id="room-6">
+<g id="room-6_2">
+<mask id="path-45-inside-7_10_402" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 357H79V522H110V382H182V609H110V555H79V640H0V357Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 357H79V522H110V382H182V609H110V555H79V640H0V357Z" fill="#A8D299"/>
+<path d="M79 357H80V356H79V357ZM0 357V356H-1V357H0ZM79 522H78V523H79V522ZM110 522V523H111V522H110ZM110 382V381H109V382H110ZM182 382H183V381H182V382ZM182 609V610H183V609H182ZM110 609H109V610H110V609ZM110 555H111V554H110V555ZM79 555V554H78V555H79ZM79 640V641H80V640H79ZM0 640H-1V641H0V640ZM79 356H0V358H79V356ZM80 522V357H78V522H80ZM79 523H110V521H79V523ZM109 382V522H111V382H109ZM182 381H110V383H182V381ZM183 609V382H181V609H183ZM110 610H182V608H110V610ZM109 555V609H111V555H109ZM110 554H79V556H110V554ZM80 640V555H78V640H80ZM0 641H79V639H0V641ZM-1 357V640H1V357H-1Z" fill="black" mask="url(#path-45-inside-7_10_402)"/>
+</g>
+<text id="6" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="141" y="491.273">6</tspan></text>
+</g>
+</g>
+</svg>

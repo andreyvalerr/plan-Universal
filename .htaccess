@@ -1,0 +1,17 @@
+# Установка главной страницы
+DirectoryIndex login.html index.html
+
+# Запрет на просмотр каталогов
+Options -Indexes
+
+# Кодировка по умолчанию
+AddDefaultCharset UTF-8
+
+# Запрет доступа к API файлам (если необходимо)
+<FilesMatch "google-apps-script\.js$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Сообщение об ошибке 404
+ErrorDocument 404 /login.html 

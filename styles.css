@@ -1,0 +1,435 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 768px) {
+    .container {
+        padding: 5px;
+        max-width: 100%;
+    }
+}
+
+/* Заголовок и переключатели */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.building-switcher, .floor-switcher {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Стили для групп этажей */
+.floors-group {
+    display: none;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.floors-group.active {
+    display: flex;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #e0e6e8;
+}
+
+button.active {
+    background-color: #3498db;
+    color: white;
+    border-color: #2980b9;
+}
+
+/* Медиа-запрос для адаптации заголовка и кнопок на мобильных устройствах */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    
+    .building-switcher, .floor-switcher {
+        gap: 5px;
+    }
+    
+    button {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .user-section {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+    
+    .user-info {
+        margin-bottom: 10px;
+    }
+    
+    .logout-button {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    
+    .user-info-top {
+        font-size: 12px;
+        margin-right: 10px;
+    }
+    
+    .top-user-bar {
+        padding: 5px 0;
+    }
+    
+    .header-title {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .building-switcher-container {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .floor-switcher-container {
+        margin-bottom: 10px;
+    }
+}
+
+/* Основное содержимое */
+main {
+    display: block;
+    margin-bottom: 30px;
+}
+
+.map-container {
+    width: 100%;
+    min-height: 500px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.map-wrapper {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.map-wrapper.active {
+    display: block;
+}
+
+/* Новый блок под схемой */
+.under-map-info {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Медиа-запрос для адаптации схемы и информации под ней на мобильных устройствах */
+@media (max-width: 768px) {
+    .map-container {
+        min-height: 350px;
+        width: 100vw;
+        margin-left: -5px;
+        margin-right: -5px;
+        border-radius: 0;
+    }
+    
+    .under-map-info {
+        flex-direction: column;
+        padding: 10px;
+        margin-left: -5px;
+        margin-right: -5px;
+        width: 100vw;
+        border-radius: 0;
+    }
+    
+    .legend {
+        margin-bottom: 20px;
+    }
+}
+
+/* Стили для SVG */
+svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Стили для помещений на схеме */
+[id^="room-"] {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Универсальные стили для SVG-элементов */
+/* Для свободных помещений */
+.free rect, 
+.free path, 
+.free polygon, 
+.free polyline, 
+.free circle, 
+.free ellipse {
+    fill: #A8D299 !important; /* Зеленый - свободно */
+    transition: fill 0.3s ease;
+}
+
+/* Для занятых помещений */
+.occupied rect, 
+.occupied path, 
+.occupied polygon, 
+.occupied polyline, 
+.occupied circle, 
+.occupied ellipse {
+    fill: #F08080 !important; /* Красный - занято */
+    transition: fill 0.3s ease;
+}
+
+/* Для синих помещений из конфигурации */
+.blue-room rect, 
+.blue-room path, 
+.blue-room polygon, 
+.blue-room polyline, 
+.blue-room circle, 
+.blue-room ellipse {
+    fill: #3498db !important; /* Голубой цвет как у кнопок */
+    transition: fill 0.3s ease;
+}
+
+/* Коридоры и служебные помещения */
+[id^="corridor"] rect,
+[id^="corridor"] path {
+    fill: #D9D9D9 !important; /* Серый для коридоров */
+}
+
+/* Выделение активного помещения */
+.active-room rect,
+.active-room path,
+.active-room polygon,
+.active-room polyline,
+.active-room circle,
+.active-room ellipse {
+    stroke-width: 2px;
+    stroke: #2980b9 !important;
+}
+
+/* Выделение особых помещений (постоянное выделение) */
+.special-room rect,
+.special-room path,
+.special-room polygon,
+.special-room polyline,
+.special-room circle,
+.special-room ellipse {
+    fill: #3498db !important; /* Голубой цвет как у кнопок */
+    transition: fill 0.3s ease;
+}
+
+/* Информация о комнате */
+.room-info {
+    flex: 2;
+}
+
+.room-info h2 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    color: #2c3e50;
+}
+
+#room-details {
+    font-size: 0.9rem;
+}
+
+#room-details p {
+    margin-bottom: 10px;
+}
+
+/* Легенда */
+.legend {
+    flex: 1;
+    min-width: 150px;
+}
+
+.legend h3 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #2c3e50;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.color-sample {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+.color-sample.free {
+    background-color: #A8D299;
+}
+
+.color-sample.occupied {
+    background-color: #F08080;
+}
+
+.color-sample.special {
+    background-color: #3498db;
+}
+
+.color-sample.blue {
+    background-color: #3498db;
+}
+
+/* Стили для переключателя */
+.toggle-container {
+    margin-top: 15px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.slider.round {
+    border-radius: 20px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Google Sheets iframe */
+.google-sheets-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.google-sheets-container h2 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.iframe-container {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border: 1px solid #ecf0f1;
+}
+
+.iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Медиа-запрос для таблицы Google Sheets на мобильных устройствах */
+@media (max-width: 768px) {
+    .google-sheets-container {
+        padding: 10px;
+        margin-left: -5px;
+        margin-right: -5px;
+        width: 100vw;
+        border-radius: 0;
+    }
+    
+    .google-sheets-container h2 {
+        font-size: 1.3rem;
+    }
+    
+    .iframe-container {
+        height: 300px;
+    }
+} 
