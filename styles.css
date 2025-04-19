@@ -236,7 +236,7 @@ svg {
 .blue-room polyline, 
 .blue-room circle, 
 .blue-room ellipse {
-    fill: #0000FF !important; /* Синий цвет */
+    fill: #3498db !important; /* Голубой цвет как у кнопок */
     transition: fill 0.3s ease;
 }
 
@@ -264,7 +264,7 @@ svg {
 .special-room polyline,
 .special-room circle,
 .special-room ellipse {
-    fill: #0000FF !important; /* Насыщенный синий цвет */
+    fill: #3498db !important; /* Голубой цвет как у кнопок */
     transition: fill 0.3s ease;
 }
 
@@ -321,11 +321,11 @@ svg {
 }
 
 .color-sample.special {
-    background-color: #0000FF;
+    background-color: #3498db;
 }
 
 .color-sample.blue {
-    background-color: #0000FF;
+    background-color: #3498db;
 }
 
 /* Стили для переключателя */
