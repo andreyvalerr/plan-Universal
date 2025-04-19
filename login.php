@@ -8,7 +8,7 @@ $password = isset($_POST['password']) ? $_POST['password'] : '';
 
 // Проверяем учетные данные (замените на свои или подключите к базе данных)
 $validUsername = 'admin';
-$validPassword = 'password123';
+$validPassword = 'Pbey*n';
 
 // Формируем ответ
 $response = [];
