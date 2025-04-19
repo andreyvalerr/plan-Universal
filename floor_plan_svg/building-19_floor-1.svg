@@ -1,0 +1,86 @@
+<svg width="1136" height="508" viewBox="0 0 1136 508" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="building-19_floor-1">
+<g id="room-103" style="mix-blend-mode:darken">
+<rect x="0.5" y="0.5" width="148" height="133" fill="#A8D299"/>
+<rect x="0.5" y="0.5" width="148" height="133" stroke="black"/>
+</g>
+<text id="103" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="57" y="74.2727">103</tspan></text>
+<g id="room-102" style="mix-blend-mode:darken">
+<rect x="0.5" y="134.5" width="148" height="114" fill="#A8D299"/>
+<rect x="0.5" y="134.5" width="148" height="114" stroke="black"/>
+</g>
+<text id="102" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="58" y="192.273">102</tspan></text>
+<g id="corridor" style="mix-blend-mode:darken">
+<rect x="163.5" y="0.5" width="83" height="248" fill="#D9D9D9"/>
+<rect x="163.5" y="0.5" width="83" height="248" stroke="black"/>
+</g>
+<g id="room-106" style="mix-blend-mode:darken">
+<rect x="262.5" y="0.5" width="125" height="191" fill="#A8D299"/>
+<rect x="262.5" y="0.5" width="125" height="191" stroke="black"/>
+</g>
+<text id="106" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="307" y="105.273">106</tspan></text>
+<g id="corridor_2" style="mix-blend-mode:darken">
+<rect x="262.5" y="192.5" width="125" height="56" fill="#D9D9D9"/>
+<rect x="262.5" y="192.5" width="125" height="56" stroke="black"/>
+</g>
+<g id="room-107" style="mix-blend-mode:darken">
+<mask id="path-9-inside-1_9_96" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M548 0H388V249H548H640V192H548V0Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M548 0H388V249H548H640V192H548V0Z" fill="#A8D299"/>
+<path d="M388 0V-1H387V0H388ZM548 0H549V-1H548V0ZM388 249H387V250H388V249ZM640 249V250H641V249H640ZM640 192H641V191H640V192ZM548 192H547V193H548V192ZM388 1H548V-1H388V1ZM389 249V0H387V249H389ZM548 248H388V250H548V248ZM640 248H548V250H640V248ZM639 192V249H641V192H639ZM548 193H640V191H548V193ZM547 0V192H549V0H547Z" fill="black" mask="url(#path-9-inside-1_9_96)"/>
+</g>
+<text id="107" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="449" y="105.273">107</tspan></text>
+<g id="room-108" style="mix-blend-mode:darken">
+<rect x="548.5" y="0.5" width="91" height="191" fill="#A8D299"/>
+<rect x="548.5" y="0.5" width="91" height="191" stroke="black"/>
+</g>
+<text id="108" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="572" y="103.273">108</tspan></text>
+<g id="room-110" style="mix-blend-mode:darken">
+<rect x="656.5" y="0.5" width="86" height="191" fill="#A8D299"/>
+<rect x="656.5" y="0.5" width="86" height="191" stroke="black"/>
+</g>
+<text id="110" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="684" y="105.273">110</tspan></text>
+<g id="room-111" style="mix-blend-mode:darken">
+<rect x="743.5" y="0.5" width="100" height="191" fill="#A8D299"/>
+<rect x="743.5" y="0.5" width="100" height="191" stroke="black"/>
+</g>
+<text id="111" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="774" y="105.273">111</tspan></text>
+<g id="room-112" style="mix-blend-mode:darken">
+<rect x="842.5" y="0.5" width="107" height="191" fill="#A8D299"/>
+<rect x="842.5" y="0.5" width="107" height="191" stroke="black"/>
+</g>
+<text id="112" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="882" y="102.273">112</tspan></text>
+<g id="room-113" style="mix-blend-mode:darken">
+<rect x="950.5" y="0.5" width="91" height="191" fill="#A8D299"/>
+<rect x="950.5" y="0.5" width="91" height="191" stroke="black"/>
+</g>
+<text id="113" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="980" y="102.273">113</tspan></text>
+<g id="corridor_3" style="mix-blend-mode:darken">
+<rect x="656.5" y="192.5" width="385" height="64" fill="#D9D9D9"/>
+<rect x="656.5" y="192.5" width="385" height="64" stroke="black"/>
+</g>
+<g id="corridor_4" style="mix-blend-mode:darken">
+<rect x="1060.5" y="0.5" width="75" height="256" fill="#D9D9D9"/>
+<rect x="1060.5" y="0.5" width="75" height="256" stroke="black"/>
+</g>
+<g id="room-101" style="mix-blend-mode:darken">
+<rect x="0.5" y="268.5" width="148" height="239" fill="#A8D299"/>
+<rect x="0.5" y="268.5" width="148" height="239" stroke="black"/>
+</g>
+<text id="101" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="58" y="388.273">101</tspan></text>
+<g id="room-117" style="mix-blend-mode:darken">
+<mask id="path-26-inside-2_9_96" fill="white">
+<path d="M163 268H640V508H163V268Z"/>
+</mask>
+<path d="M163 268H640V508H163V268Z" fill="#A8D299"/>
+<path d="M163 268H640V508H163V268Z" stroke="black" stroke-width="2" mask="url(#path-26-inside-2_9_96)"/>
+</g>
+<text id="117" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="386" y="383.273">117</tspan></text>
+<g id="room-116" style="mix-blend-mode:darken">
+<rect x="656.5" y="268.5" width="479" height="239" fill="#A8D299"/>
+<rect x="656.5" y="268.5" width="479" height="239" stroke="black"/>
+</g>
+<text id="116" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="882" y="383.273">116</tspan></text>
+</g>
+</svg>

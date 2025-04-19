@@ -1,0 +1,69 @@
+<svg width="829" height="622" viewBox="0 0 829 622" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="building-19-2_floor-2">
+<g id="corridor">
+<rect x="365.5" y="66.5" width="79" height="193" fill="#D9D9D9"/>
+<rect x="365.5" y="66.5" width="79" height="193" stroke="black"/>
+<rect x="365.5" y="66.5" width="79" height="193" stroke="black" stroke-opacity="0.2"/>
+<rect x="365.5" y="66.5" width="79" height="193" stroke="black" stroke-opacity="0.2"/>
+</g>
+<g id="room-28">
+<rect id="room-28_2" x="194.5" y="352.5" width="170" height="269" fill="#A8D299" stroke="black"/>
+<text id="28" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="267" y="494.273">28</tspan></text>
+</g>
+<g id="room-27">
+<g id="room-27_2">
+<rect x="365.5" y="352.5" width="463" height="269" fill="#A8D299"/>
+<rect x="365.5" y="352.5" width="463" height="269" stroke="black"/>
+<rect x="365.5" y="352.5" width="463" height="269" stroke="black" stroke-opacity="0.2"/>
+<rect x="365.5" y="352.5" width="463" height="269" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="27" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="585" y="489.273">27</tspan></text>
+</g>
+<g id="room-25">
+<g id="room-25_2">
+<rect x="521.5" y="66.5" width="148" height="193" fill="#A8D299"/>
+<rect x="521.5" y="66.5" width="148" height="193" stroke="black"/>
+<rect x="521.5" y="66.5" width="148" height="193" stroke="black" stroke-opacity="0.2"/>
+<rect x="521.5" y="66.5" width="148" height="193" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="25" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="584" y="170.273">25</tspan></text>
+</g>
+<g id="room-26">
+<g id="room-26_2">
+<rect x="670.5" y="66.5" width="158" height="264" fill="#A8D299"/>
+<rect x="670.5" y="66.5" width="158" height="264" stroke="black"/>
+<rect x="670.5" y="66.5" width="158" height="264" stroke="black" stroke-opacity="0.2"/>
+<rect x="670.5" y="66.5" width="158" height="264" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="26" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="746" y="170.273">26</tspan></text>
+</g>
+<g id="room-21">
+<g id="room-21_2">
+<rect x="0.5" y="203.5" width="159" height="219" fill="#A8D299"/>
+<rect x="0.5" y="203.5" width="159" height="219" stroke="black"/>
+<rect x="0.5" y="203.5" width="159" height="219" stroke="black" stroke-opacity="0.2"/>
+<rect x="0.5" y="203.5" width="159" height="219" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="21" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="69" y="313.273">21</tspan></text>
+</g>
+<g id="corridor_2">
+<rect x="194.5" y="0.5" width="147" height="259" fill="#D9D9D9"/>
+<rect x="194.5" y="0.5" width="147" height="259" stroke="black"/>
+<rect x="194.5" y="0.5" width="147" height="259" stroke="black" stroke-opacity="0.2"/>
+<rect x="194.5" y="0.5" width="147" height="259" stroke="black" stroke-opacity="0.2"/>
+</g>
+<g id="corridor_3">
+<rect x="445.5" y="66.5" width="75" height="193" fill="#D9D9D9"/>
+<rect x="445.5" y="66.5" width="75" height="193" stroke="black"/>
+<rect x="445.5" y="66.5" width="75" height="193" stroke="black" stroke-opacity="0.2"/>
+<rect x="445.5" y="66.5" width="75" height="193" stroke="black" stroke-opacity="0.2"/>
+</g>
+<g id="corridor_4">
+<mask id="path-14-inside-1_12_521" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M670 260H194V294H160V332H194V331H670V260Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M670 260H194V294H160V332H194V331H670V260Z" fill="#D9D9D9"/>
+<path d="M194 260V259H193V260H194ZM670 260H671V259H670V260ZM194 294V295H195V294H194ZM160 294V293H159V294H160ZM160 332H159V333H160V332ZM194 332V333H195V332H194ZM194 331V330H193V331H194ZM670 331V332H671V331H670ZM194 261H670V259H194V261ZM195 294V260H193V294H195ZM160 295H194V293H160V295ZM161 332V294H159V332H161ZM194 331H160V333H194V331ZM193 331V332H195V331H193ZM670 330H194V332H670V330ZM669 260V331H671V260H669Z" fill="black" mask="url(#path-14-inside-1_12_521)"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,53 @@
+<svg width="749" height="663" viewBox="0 0 749 663" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="building-19-2_floor-0">
+<g id="room-2">
+<g id="room-2_2">
+<rect x="171.5" y="66.5" width="264" height="264" fill="#A8D299"/>
+<rect x="171.5" y="66.5" width="264" height="264" stroke="black"/>
+<rect x="171.5" y="66.5" width="264" height="264" stroke="black" stroke-opacity="0.2"/>
+<rect x="171.5" y="66.5" width="264" height="264" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="2" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="302" y="206.273">2</tspan></text>
+</g>
+<g id="room-5">
+<g id="room-5_2">
+<rect x="0.5" y="440.5" width="170" height="181" fill="#A8D299"/>
+<rect x="0.5" y="440.5" width="170" height="181" stroke="black"/>
+<rect x="0.5" y="440.5" width="170" height="181" stroke="black" stroke-opacity="0.2"/>
+<rect x="0.5" y="440.5" width="170" height="181" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="5" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="83" y="538.273">5</tspan></text>
+</g>
+<g id="corridor">
+<rect x="0.5" y="0.5" width="147" height="330" fill="#D9D9D9"/>
+<rect x="0.5" y="0.5" width="147" height="330" stroke="black"/>
+<rect x="0.5" y="0.5" width="147" height="330" stroke="black" stroke-opacity="0.2"/>
+<rect x="0.5" y="0.5" width="147" height="330" stroke="black" stroke-opacity="0.2"/>
+</g>
+<g id="room-3">
+<rect id="room-3_2" x="436.5" y="66.5" width="198" height="264" fill="#A8D299" stroke="black"/>
+<text id="3" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="529" y="206.273">3</tspan></text>
+</g>
+<g id="room-6">
+<rect id="room-6_2" x="0.5" y="352.5" width="73" height="87" fill="#A8D299" stroke="black"/>
+<text id="6" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="28.4615" y="403.273">6</tspan></text>
+</g>
+<g id="room-4">
+<g id="room-4_2">
+<mask id="path-10-inside-1_12_677" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M171 352H74V440H171V622H531H635V429H531V352H171Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M171 352H74V440H171V622H531H635V429H531V352H171Z" fill="#A8D299"/>
+<path d="M74 352V351H73V352H74ZM74 440H73V441H74V440ZM171 440H172V439H171V440ZM171 622H170V623H171V622ZM635 622V623H636V622H635ZM635 429H636V428H635V429ZM531 429H530V430H531V429ZM531 352H532V351H531V352ZM74 353H171V351H74V353ZM75 440V352H73V440H75ZM171 439H74V441H171V439ZM170 440V622H172V440H170ZM171 623H531V621H171V623ZM531 623H635V621H531V623ZM636 622V429H634V622H636ZM635 428H531V430H635V428ZM532 429V352H530V429H532ZM531 351H171V353H531V351Z" fill="black" mask="url(#path-10-inside-1_12_677)"/>
+</g>
+<text id="4" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="415" y="526.273">4</tspan></text>
+</g>
+<g id="corridor_2">
+<mask id="path-13-inside-2_12_677" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M666 331H749V663H666V429H635H531V352H635V391H666V331Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M666 331H749V663H666V429H635H531V352H635V391H666V331Z" fill="#D9D9D9"/>
+<path d="M749 331H750V330H749V331ZM666 331V330H665V331H666ZM749 663V664H750V663H749ZM666 663H665V664H666V663ZM666 429H667V428H666V429ZM531 429H530V430H531V429ZM531 352V351H530V352H531ZM635 352H636V351H635V352ZM635 391H634V392H635V391ZM666 391V392H667V391H666ZM749 330H666V332H749V330ZM750 663V331H748V663H750ZM666 664H749V662H666V664ZM665 429V663H667V429H665ZM666 428H635V430H666V428ZM531 430H635V428H531V430ZM530 352V429H532V352H530ZM635 351H531V353H635V351ZM636 391V352H634V391H636ZM635 392H666V390H635V392ZM665 331V391H667V331H665Z" fill="black" mask="url(#path-13-inside-2_12_677)"/>
+</g>
+</g>
+</svg>

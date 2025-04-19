@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивная схема зданий</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .user-section {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            padding: 0 20px;
+        }
+        
+        .user-info {
+            margin-right: 15px;
+            font-size: 14px;
+        }
+        
+        .logout-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .logout-button:hover {
+            background-color: #d32f2f;
+        }
+        
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Интерактивная схема зданий</h1>
+            
+            <!-- Переключатели зданий -->
+            <div class="building-switcher">
+                <button data-building="building-19" class="active">Здание 19</button>
+                <button data-building="building-19-1">Здание 19-1</button>
+                <button data-building="building-19-2">Здание 19-2</button>
+            </div>
+            
+            <!-- Секция пользователя -->
+            <div class="user-section">
+                <div class="user-info">
+                    Пользователь: <span id="username">admin</span>
+                </div>
+                <button class="logout-button" id="logout-button">Выйти</button>
+            </div>
+            
+            <!-- Переключатели этажей -->
+            <div class="floor-switcher">
+                <!-- Для здания 19 -->
+                <div class="floors-19 floors-group active">
+                    <button data-floor="floor-0">Подвал</button>
+                    <button data-floor="floor-1" class="active">1 этаж</button>
+                    <button data-floor="floor-2">2 этаж</button>
+                </div>
+                
+                <!-- Для здания 19-1 -->
+                <div class="floors-19-1 floors-group">
+                    <button data-floor="floor-1">1 этаж</button>
+                    <button data-floor="floor-2">2 этаж</button>
+                </div>
+                
+                <!-- Для здания 19-2 -->
+                <div class="floors-19-2 floors-group">
+                    <button data-floor="floor-0">Подвал</button>
+                    <button data-floor="floor-1">1 этаж</button>
+                    <button data-floor="floor-2">2 этаж</button>
+                    <button data-floor="floor-3">3 этаж</button>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <div class="map-container">
+                <!-- Схемы зданий и этажей будут загружаться сюда из SVG -->
+                <div class="map-wrapper active" data-building="building-19" data-floor="floor-1">
+                    <!-- Пример SVG схемы здания 19, этаж 1 -->
+                </div>
+                <!-- Другие схемы будут добавлены через JavaScript -->
+            </div>
+            
+            <div class="sidebar">
+                <!-- Информация о выбранном помещении -->
+                <div class="room-info">
+                    <h2>Информация о помещении</h2>
+                    <div id="room-details">
+                        <p>Выберите помещение на схеме</p>
+                    </div>
+                </div>
+                
+                <!-- Легенда -->
+                <div class="legend">
+                    <h3>Легенда</h3>
+                    <div class="legend-item">
+                        <div class="color-sample free"></div>
+                        <span>Свободно</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-sample occupied"></div>
+                        <span>Занято</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Таблица Google Sheets -->
+        <section class="google-sheets-container">
+            <h2>Реестр помещений</h2>
+            <div class="iframe-container">
+                <!-- Здесь будет iframe с встроенной Google Таблицей -->
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSlxs2634IrcKbOFIO81ivAPCp3xXesYIklAACay3luOG29j7JwapPutj5cvRLqjGXMzjR9rLWt5GWq/pubhtml?widget=true&amp;headers=false"></iframe>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
