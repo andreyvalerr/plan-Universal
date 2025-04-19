@@ -1,0 +1,89 @@
+<svg width="635" height="622" viewBox="0 0 635 622" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="building-19-2_floor-3">
+<g id="room-32">
+<g id="room-32_2">
+<rect x="171.5" y="66.5" width="155" height="193" fill="#A8D299"/>
+<rect x="171.5" y="66.5" width="155" height="193" stroke="black"/>
+<rect x="171.5" y="66.5" width="155" height="193" stroke="black" stroke-opacity="0.2"/>
+<rect x="171.5" y="66.5" width="155" height="193" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="32" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="236" y="170.273">32</tspan></text>
+</g>
+<g id="room-33">
+<g id="room-33_2">
+<rect x="327.5" y="66.5" width="148" height="193" fill="#A8D299"/>
+<rect x="327.5" y="66.5" width="148" height="193" stroke="black"/>
+<rect x="327.5" y="66.5" width="148" height="193" stroke="black" stroke-opacity="0.2"/>
+<rect x="327.5" y="66.5" width="148" height="193" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="33" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="389" y="170.273">33</tspan></text>
+</g>
+<g id="room-34">
+<g id="room-34_2">
+<rect x="476.5" y="66.5" width="158" height="264" fill="#A8D299"/>
+<rect x="476.5" y="66.5" width="158" height="264" stroke="black"/>
+<rect x="476.5" y="66.5" width="158" height="264" stroke="black" stroke-opacity="0.2"/>
+<rect x="476.5" y="66.5" width="158" height="264" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="34" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="543" y="175.273">34</tspan></text>
+</g>
+<g id="room-35a">
+<g id="room-35a_2">
+<rect x="476.5" y="352.5" width="158" height="269" fill="#A8D299"/>
+<rect x="476.5" y="352.5" width="158" height="269" stroke="black"/>
+<rect x="476.5" y="352.5" width="158" height="269" stroke="black" stroke-opacity="0.2"/>
+<rect x="476.5" y="352.5" width="158" height="269" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="35a" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="533" y="538.273">35a</tspan></text>
+</g>
+<g id="room-35b">
+<g id="room-35b_2">
+<rect x="309.5" y="440.5" width="166" height="181" fill="#A8D299"/>
+<rect x="309.5" y="440.5" width="166" height="181" stroke="black"/>
+<rect x="309.5" y="440.5" width="166" height="181" stroke="black" stroke-opacity="0.2"/>
+<rect x="309.5" y="440.5" width="166" height="181" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="35b" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="377" y="538.273">35b</tspan></text>
+</g>
+<g id="room-35c">
+<g id="room-35c_2">
+<rect x="171.5" y="352.5" width="137" height="269" fill="#A8D299"/>
+<rect x="171.5" y="352.5" width="137" height="269" stroke="black"/>
+<rect x="171.5" y="352.5" width="137" height="269" stroke="black" stroke-opacity="0.2"/>
+<rect x="171.5" y="352.5" width="137" height="269" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="35c" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="230" y="538.273">35c</tspan></text>
+</g>
+<g id="room-36">
+<g id="room-36_2">
+<rect x="0.5" y="352.5" width="170" height="269" fill="#A8D299"/>
+<rect x="0.5" y="352.5" width="170" height="269" stroke="black"/>
+<rect x="0.5" y="352.5" width="170" height="269" stroke="black" stroke-opacity="0.2"/>
+<rect x="0.5" y="352.5" width="170" height="269" stroke="black" stroke-opacity="0.2"/>
+</g>
+<text id="36" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="77" y="538.273">36</tspan></text>
+</g>
+<g id="room-37">
+<rect id="room-37_2" x="0.5" y="260.5" width="49" height="70" fill="#A8D299" stroke="black"/>
+<text id="37" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="12" y="303.273">37</tspan></text>
+</g>
+<g id="corridor">
+<rect x="0.5" y="0.5" width="147" height="259" fill="#D9D9D9"/>
+<rect x="0.5" y="0.5" width="147" height="259" stroke="black"/>
+<rect x="0.5" y="0.5" width="147" height="259" stroke="black" stroke-opacity="0.2"/>
+<rect x="0.5" y="0.5" width="147" height="259" stroke="black" stroke-opacity="0.2"/>
+</g>
+<g id="corridor_2">
+<rect x="50.5" y="260.5" width="425" height="70" fill="#D9D9D9"/>
+<rect x="50.5" y="260.5" width="425" height="70" stroke="black"/>
+<rect x="50.5" y="260.5" width="425" height="70" stroke="black" stroke-opacity="0.2"/>
+<rect x="50.5" y="260.5" width="425" height="70" stroke="black" stroke-opacity="0.2"/>
+</g>
+<g id="corridor_3">
+<rect x="309.5" y="352.5" width="166" height="87" fill="#D9D9D9"/>
+<rect x="309.5" y="352.5" width="166" height="87" stroke="black"/>
+<rect x="309.5" y="352.5" width="166" height="87" stroke="black" stroke-opacity="0.2"/>
+<rect x="309.5" y="352.5" width="166" height="87" stroke="black" stroke-opacity="0.2"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,120 @@
+<svg width="1136" height="508" viewBox="0 0 1136 508" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="building-19_floor-2">
+<rect id="corridor" x="0.5" y="0.5" width="153" height="246" fill="#D9D9D9" stroke="black"/>
+<rect id="corridor_2" x="166.5" y="0.5" width="82" height="246" fill="#D9D9D9" stroke="black"/>
+<g id="room-222">
+<rect id="room-222_2" x="262.5" y="0.5" width="70" height="178" fill="#A8D299" stroke="black"/>
+<text id="222" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="279" y="97.2727">222</tspan></text>
+</g>
+<g id="room-223">
+<rect id="room-223_2" x="333.5" y="0.5" width="56" height="178" fill="#A8D299" stroke="black"/>
+<text id="223" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="343" y="97.2727">223</tspan></text>
+</g>
+<g id="room-221">
+<rect id="room-221_2" x="262.5" y="179.5" width="127" height="67" fill="#A8D299" stroke="black"/>
+<text id="221" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="316" y="220.273">221</tspan></text>
+</g>
+<g id="room-224">
+<rect id="room-224_2" x="390.5" y="0.5" width="169" height="246" fill="#A8D299" stroke="black"/>
+<text id="224" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="456" y="97.2727">224</tspan></text>
+</g>
+<g id="room-225">
+<rect id="room-225_2" x="560.5" y="0.5" width="80" height="246" fill="#A8D299" stroke="black"/>
+<text id="225" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="582" y="97.2727">225</tspan></text>
+</g>
+<g id="room-226">
+<rect id="room-226_2" x="660.5" y="0.5" width="100" height="109" fill="#A8D299" stroke="black"/>
+<text id="226" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="692" y="67.2727">226</tspan></text>
+</g>
+<g id="room-227">
+<rect id="room-227_2" x="761.5" y="0.5" width="101" height="109" fill="#A8D299" stroke="black"/>
+<text id="227" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="795" y="67.2727">227</tspan></text>
+</g>
+<g id="room-228">
+<g id="room-228_2">
+<mask id="path-17-inside-1_9_328" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M728 110H660V179V205L728 179V110Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M728 110H660V179V205L728 179V110Z" fill="#A8D299"/>
+<path d="M660 110V109H659V110H660ZM728 110H729V109H728V110ZM660 205H659V206.453L660.357 205.934L660 205ZM728 179L728.357 179.934L729 179.688V179H728ZM660 111H728V109H660V111ZM661 179V110H659V179H661ZM659 179V205H661V179H659ZM660.357 205.934L728.357 179.934L727.643 178.066L659.643 204.066L660.357 205.934ZM727 110V179H729V110H727Z" fill="black" mask="url(#path-17-inside-1_9_328)"/>
+</g>
+<text id="228" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="678" y="153.273">228</tspan></text>
+</g>
+<g id="229">
+<g id="room-229">
+<mask id="path-20-inside-2_9_328" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M728 110H795V179L863 205V247H660V205L728 179V110Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M728 110H795V179L863 205V247H660V205L728 179V110Z" fill="#A8D299"/>
+<path d="M795 110H796V109H795V110ZM728 110V109H727V110H728ZM795 179H794V179.688L794.643 179.934L795 179ZM863 205H864V204.312L863.357 204.066L863 205ZM863 247V248H864V247H863ZM660 247H659V248H660V247ZM660 205L659.643 204.066L659 204.312V205H660ZM728 179L728.357 179.934L729 179.688V179H728ZM795 109H728V111H795V109ZM796 179V110H794V179H796ZM863.357 204.066L795.357 178.066L794.643 179.934L862.643 205.934L863.357 204.066ZM862 205V247H864V205H862ZM863 246H660V248H863V246ZM661 247V205H659V247H661ZM727.643 178.066L659.643 204.066L660.357 205.934L728.357 179.934L727.643 178.066ZM727 110V179H729V110H727Z" fill="black" mask="url(#path-20-inside-2_9_328)"/>
+</g>
+<text id="229_2" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="746" y="213.273">229</tspan></text>
+</g>
+<g id="room-230">
+<g id="room-230_2">
+<mask id="path-23-inside-3_9_328" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M863 110H795V179L863 205V179V110Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M863 110H795V179L863 205V179V110Z" fill="#A8D299"/>
+<path d="M795 110V109H794V110H795ZM863 110H864V109H863V110ZM795 179H794V179.688L794.643 179.934L795 179ZM863 205L862.643 205.934L864 206.453V205H863ZM795 111H863V109H795V111ZM796 179V110H794V179H796ZM794.643 179.934L862.643 205.934L863.357 204.066L795.357 178.066L794.643 179.934ZM864 205V179H862V205H864ZM862 110V179H864V110H862Z" fill="black" mask="url(#path-23-inside-3_9_328)"/>
+</g>
+<text id="230" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="810" y="153.273">230</tspan></text>
+</g>
+<g id="room-231">
+<rect id="room-231_2" x="863.5" y="0.5" width="183" height="246" fill="#A8D299" stroke="black"/>
+<text id="231" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="937" y="92.2727">231</tspan></text>
+</g>
+<rect id="corridor_3" x="1061.5" y="0.5" width="74" height="246" fill="#D9D9D9" stroke="black"/>
+<rect id="corridor_4" x="166.5" y="273.5" width="474" height="78" fill="#D9D9D9" stroke="black"/>
+<g id="room-209">
+<g id="room-209_2">
+<mask id="path-30-inside-4_9_328" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 273H154V391H166V352H249V508H166V429H154V508H0V273Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 273H154V391H166V352H249V508H166V429H154V508H0V273Z" fill="#A8D299"/>
+<path d="M154 273H155V272H154V273ZM0 273V272H-1V273H0ZM154 391H153V392H154V391ZM166 391V392H167V391H166ZM166 352V351H165V352H166ZM249 352H250V351H249V352ZM249 508V509H250V508H249ZM166 508H165V509H166V508ZM166 429H167V428H166V429ZM154 429V428H153V429H154ZM154 508V509H155V508H154ZM0 508H-1V509H0V508ZM154 272H0V274H154V272ZM155 391V273H153V391H155ZM154 392H166V390H154V392ZM165 352V391H167V352H165ZM249 351H166V353H249V351ZM250 508V352H248V508H250ZM166 509H249V507H166V509ZM165 429V508H167V429H165ZM166 428H154V430H166V428ZM155 508V429H153V508H155ZM0 509H154V507H0V509ZM-1 273V508H1V273H-1Z" fill="black" mask="url(#path-30-inside-4_9_328)"/>
+</g>
+<text id="209" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="58" y="414.273">209</tspan></text>
+</g>
+<g id="room-208">
+<rect id="room-208_2" x="249.5" y="352.5" width="215" height="155" fill="#A8D299" stroke="black"/>
+<text id="208" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="338" y="419.273">208</tspan></text>
+</g>
+<g id="room-207">
+<rect id="room-207_2" x="465.5" y="352.5" width="72" height="155" fill="#A8D299" stroke="black"/>
+<text id="207" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="484" y="419.273">207</tspan></text>
+</g>
+<g id="room-206">
+<rect id="room-206_2" x="538.5" y="352.5" width="102" height="155" fill="#A8D299" stroke="black"/>
+<text id="206" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="571" y="421.273">206</tspan></text>
+</g>
+<g id="room-205">
+<rect id="room-205_2" x="660.5" y="273.5" width="73" height="56" fill="#A8D299" stroke="black"/>
+<text id="205" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="678" y="313.273">205</tspan></text>
+</g>
+<g id="room-204">
+<g id="room-204_2">
+<mask id="path-41-inside-5_9_328" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M660 330H769L831 383V508H769H660V330Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M660 330H769L831 383V508H769H660V330Z" fill="#A8D299"/>
+<path d="M769 330L769.65 329.24L769.369 329H769V330ZM660 330V329H659V330H660ZM831 383H832V382.539L831.65 382.24L831 383ZM831 508V509H832V508H831ZM660 508H659V509H660V508ZM769 329H660V331H769V329ZM768.35 330.76L830.35 383.76L831.65 382.24L769.65 329.24L768.35 330.76ZM832 508V383H830V508H832ZM769 509H831V507H769V509ZM660 509H769V507H660V509ZM659 330V508H661V330H659Z" fill="black" mask="url(#path-41-inside-5_9_328)"/>
+</g>
+<text id="204" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="727" y="419.273">204</tspan></text>
+</g>
+<g id="room-203">
+<g id="room-203_2">
+<mask id="path-44-inside-6_9_328" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1047 273H734V330H769L831 383V508H1047V330V273Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1047 273H734V330H769L831 383V508H1047V330V273Z" fill="#A8D299"/>
+<path d="M734 273V272H733V273H734ZM1047 273H1048V272H1047V273ZM734 330H733V331H734V330ZM769 330L769.65 329.24L769.369 329H769V330ZM831 383H832V382.539L831.65 382.24L831 383ZM831 508H830V509H831V508ZM1047 508V509H1048V508H1047ZM734 274H1047V272H734V274ZM735 330V273H733V330H735ZM769 329H734V331H769V329ZM768.35 330.76L830.35 383.76L831.65 382.24L769.65 329.24L768.35 330.76ZM830 383V508H832V383H830ZM831 509H1047V507H831V509ZM1048 508V330H1046V508H1048ZM1046 273V330H1048V273H1046Z" fill="black" mask="url(#path-44-inside-6_9_328)"/>
+</g>
+<text id="203" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="921" y="419.273">203</tspan></text>
+</g>
+<g id="room-202">
+<rect id="room-202_2" x="1047.5" y="273.5" width="88" height="234" fill="#A8D299" stroke="black"/>
+<text id="202" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="1073" y="416.273">202</tspan></text>
+</g>
+</g>
+</svg>

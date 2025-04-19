@@ -1,0 +1,45 @@
+<svg width="788" height="584" viewBox="0 0 788 584" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="building-19-1_floor-2">
+<g id="room-21">
+<rect id="room-21_2" x="632.5" y="0.5" width="155" height="82" fill="#A8D299" stroke="black"/>
+<text id="21" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="699" y="50.2727">21</tspan></text>
+</g>
+<rect id="corridor" x="632.5" y="83.5" width="116" height="115" fill="#D9D9D9" stroke="black"/>
+<g id="room-22a">
+<rect id="room-22a_2" x="632.5" y="199.5" width="50" height="53" fill="#A8D299" stroke="black"/>
+<text id="22a" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="640" y="233.273">22a</tspan></text>
+</g>
+<g id="corridor_2">
+<mask id="path-6-inside-1_10_447" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M749 83H788V199V253V333H710V253H683V199H749V83Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M749 83H788V199V253V333H710V253H683V199H749V83Z" fill="#D9D9D9"/>
+<path d="M788 83H789V82H788V83ZM749 83V82H748V83H749ZM788 333V334H789V333H788ZM710 333H709V334H710V333ZM710 253H711V252H710V253ZM683 253H682V254H683V253ZM683 199V198H682V199H683ZM749 199V200H750V199H749ZM788 82H749V84H788V82ZM789 199V83H787V199H789ZM789 253V199H787V253H789ZM787 253V333H789V253H787ZM788 332H710V334H788V332ZM711 333V253H709V333H711ZM683 254H710V252H683V254ZM682 199V253H684V199H682ZM749 198H683V200H749V198ZM748 83V199H750V83H748Z" fill="black" mask="url(#path-6-inside-1_10_447)"/>
+</g>
+<g id="corridor_3">
+<mask id="path-8-inside-2_10_447" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M710 253H632V292V333H710V292V253Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M710 253H632V292V333H710V292V253Z" fill="#D9D9D9"/>
+<path d="M632 253V252H631V253H632ZM710 253H711V252H710V253ZM632 333H631V334H632V333ZM710 333V334H711V333H710ZM632 254H710V252H632V254ZM633 292V253H631V292H633ZM633 333V292H631V333H633ZM710 332H632V334H710V332ZM709 292V333H711V292H709ZM709 253V292H711V253H709Z" fill="black" mask="url(#path-8-inside-2_10_447)"/>
+</g>
+<g id="room-27">
+<rect id="room-27_2" x="0.5" y="361.5" width="192" height="222" fill="#A8D299" stroke="black"/>
+<text id="27" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="85" y="511.273">27</tspan></text>
+</g>
+<g id="room-26">
+<rect id="room-26_2" x="193.5" y="414.5" width="141" height="169" fill="#A8D299" stroke="black"/>
+<text id="26" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="251" y="506.273">26</tspan></text>
+</g>
+<g id="room-25">
+<g id="room-25_2">
+<mask id="path-14-inside-3_10_447" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M788 361H193V414H335V584H788V414V361Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M788 361H193V414H335V584H788V414V361Z" fill="#A8D299"/>
+<path d="M193 361V360H192V361H193ZM788 361H789V360H788V361ZM193 414H192V415H193V414ZM335 414H336V413H335V414ZM335 584H334V585H335V584ZM788 584V585H789V584H788ZM193 362H788V360H193V362ZM194 414V361H192V414H194ZM335 413H193V415H335V413ZM336 584V414H334V584H336ZM788 583H335V585H788V583ZM787 414V584H789V414H787ZM787 361V414H789V361H787Z" fill="black" mask="url(#path-14-inside-3_10_447)"/>
+</g>
+<text id="25" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="544" y="506.273">25</tspan></text>
+</g>
+</g>
+</svg>

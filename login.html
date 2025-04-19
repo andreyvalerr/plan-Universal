@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход | Интерактивная схема зданий</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .login-form button:hover {
+            background-color: #45a049;
+        }
+        
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Вход в систему</h1>
+            <p>Интерактивная схема зданий</p>
+        </div>
+        
+        <div class="error-message" id="error-message">
+            Неверный логин или пароль
+        </div>
+        
+        <form class="login-form" id="login-form">
+            <input type="text" id="username" name="username" placeholder="Логин" required>
+            <input type="password" id="password" name="password" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Проверка, если пользователь уже авторизован
+            if (localStorage.getItem('isAuthenticated') === 'true') {
+                window.location.href = 'index.html';
+            }
+            
+            const loginForm = document.getElementById('login-form');
+            const errorMessage = document.getElementById('error-message');
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                // Отправляем данные на сервер через AJAX
+                fetch('login.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Сохраняем статус авторизации
+                        localStorage.setItem('isAuthenticated', 'true');
+                        localStorage.setItem('username', username);
+                        
+                        // Перенаправляем на главную страницу
+                        window.location.href = 'index.html';
+                    } else {
+                        // Показываем сообщение об ошибке
+                        errorMessage.style.display = 'block';
+                        errorMessage.textContent = data.message || 'Неверный логин или пароль';
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = 'Ошибка соединения с сервером';
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

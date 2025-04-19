@@ -1,0 +1,30 @@
+<svg width="788" height="584" viewBox="0 0 788 584" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="building-19-1_floor-1">
+<rect id="corridor" x="632.5" y="0.5" width="155" height="128" fill="#D9D9D9" stroke="black"/>
+<rect id="corridor_2" x="632.5" y="129.5" width="100" height="124" fill="#D9D9D9" stroke="black"/>
+<g id="corridor_3">
+<mask id="path-3-inside-1_10_421" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M788 129H733V254H632V342H788V254V129Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M788 129H733V254H632V342H788V254V129Z" fill="#D9D9D9"/>
+<path d="M733 129V128H732V129H733ZM788 129H789V128H788V129ZM733 254V255H734V254H733ZM632 254V253H631V254H632ZM632 342H631V343H632V342ZM788 342V343H789V342H788ZM733 130H788V128H733V130ZM734 254V129H732V254H734ZM632 255H733V253H632V255ZM633 342V254H631V342H633ZM788 341H632V343H788V341ZM787 254V342H789V254H787ZM787 129V254H789V129H787Z" fill="black" mask="url(#path-3-inside-1_10_421)"/>
+</g>
+<g id="room-17">
+<rect id="room-17_2" x="0.5" y="367.5" width="156" height="216" fill="#A8D299" stroke="black"/>
+<text id="17" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="70" y="483.273">17</tspan></text>
+</g>
+<g id="room-16">
+<rect id="room-16_2" x="157.5" y="367.5" width="177" height="216" fill="#A8D299" stroke="black"/>
+<text id="16" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="235" y="483.273">16</tspan></text>
+</g>
+<g id="room-15">
+<rect id="room-15_2" x="335.5" y="367.5" width="120" height="216" fill="#A8D299" stroke="black"/>
+<text id="15" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="385" y="483.273">15</tspan></text>
+</g>
+<g id="room-14">
+<rect id="room-14_2" x="456.5" y="367.5" width="253" height="216" fill="#A8D299" stroke="black"/>
+<text id="14" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="571" y="483.273">14</tspan></text>
+</g>
+<rect id="corridor_4" x="710.5" y="367.5" width="77" height="216" fill="#D9D9D9" stroke="black"/>
+</g>
+</svg>
