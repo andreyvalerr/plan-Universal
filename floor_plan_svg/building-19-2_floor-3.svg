@@ -27,32 +27,32 @@
 </g>
 <text id="34" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="543" y="175.273">34</tspan></text>
 </g>
-<g id="room-35a">
-<g id="room-35a_2">
+<g id="room-35а">
+<g id="room-35а_2">
 <rect x="476.5" y="352.5" width="158" height="269" fill="#A8D299"/>
 <rect x="476.5" y="352.5" width="158" height="269" stroke="black"/>
 <rect x="476.5" y="352.5" width="158" height="269" stroke="black" stroke-opacity="0.2"/>
 <rect x="476.5" y="352.5" width="158" height="269" stroke="black" stroke-opacity="0.2"/>
 </g>
-<text id="35a" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="533" y="538.273">35a</tspan></text>
+<text id="35а" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="533" y="538.273">35а</tspan></text>
 </g>
-<g id="room-35b">
-<g id="room-35b_2">
+<g id="room-35б">
+<g id="room-35б_2">
 <rect x="309.5" y="440.5" width="166" height="181" fill="#A8D299"/>
 <rect x="309.5" y="440.5" width="166" height="181" stroke="black"/>
 <rect x="309.5" y="440.5" width="166" height="181" stroke="black" stroke-opacity="0.2"/>
 <rect x="309.5" y="440.5" width="166" height="181" stroke="black" stroke-opacity="0.2"/>
 </g>
-<text id="35b" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="377" y="538.273">35b</tspan></text>
+<text id="35б" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="377" y="538.273">35б</tspan></text>
 </g>
-<g id="room-35c">
-<g id="room-35c_2">
+<g id="room-35в">
+<g id="room-35в_2">
 <rect x="171.5" y="352.5" width="137" height="269" fill="#A8D299"/>
 <rect x="171.5" y="352.5" width="137" height="269" stroke="black"/>
 <rect x="171.5" y="352.5" width="137" height="269" stroke="black" stroke-opacity="0.2"/>
 <rect x="171.5" y="352.5" width="137" height="269" stroke="black" stroke-opacity="0.2"/>
 </g>
-<text id="35c" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="230" y="538.273">35c</tspan></text>
+<text id="35в" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="230" y="538.273">35в</tspan></text>
 </g>
 <g id="room-36">
 <g id="room-36_2">
@@ -63,8 +63,8 @@
 </g>
 <text id="36" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="77" y="538.273">36</tspan></text>
 </g>
-<g id="room-37">
-<rect id="room-37_2" x="0.5" y="260.5" width="49" height="70" fill="#A8D299" stroke="black"/>
+<g id="corridor_4">
+<rect id="corridor_4_rect" x="0.5" y="260.5" width="49" height="70" fill="#D9D9D9" stroke="black"/>
 <text id="37" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="12" y="303.273">37</tspan></text>
 </g>
 <g id="corridor">

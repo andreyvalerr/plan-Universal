@@ -5,8 +5,8 @@
 <text id="21" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="699" y="50.2727">21</tspan></text>
 </g>
 <rect id="corridor" x="632.5" y="83.5" width="116" height="115" fill="#D9D9D9" stroke="black"/>
-<g id="room-22a">
-<rect id="room-22a_2" x="632.5" y="199.5" width="50" height="53" fill="#A8D299" stroke="black"/>
+<g id="corridor_4">
+<rect id="corridor_4_rect" x="632.5" y="199.5" width="50" height="53" fill="#D9D9D9" stroke="black"/>
 <text id="22a" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="640" y="233.273">22a</tspan></text>
 </g>
 <g id="corridor_2">

@@ -28,8 +28,8 @@
 <rect id="room-3_2" x="436.5" y="66.5" width="198" height="264" fill="#A8D299" stroke="black"/>
 <text id="3" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="529" y="206.273">3</tspan></text>
 </g>
-<g id="room-6">
-<rect id="room-6_2" x="0.5" y="352.5" width="73" height="87" fill="#A8D299" stroke="black"/>
+<g id="corridor_3">
+<rect id="corridor_3_rect" x="0.5" y="352.5" width="73" height="87" fill="#D9D9D9" stroke="black"/>
 <text id="6" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="28.4615" y="403.273">6</tspan></text>
 </g>
 <g id="room-4">
