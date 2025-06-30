@@ -25,7 +25,7 @@
 </g>
 <g id="room-11a">
 <polygon points="740.5,209.5 837.5,209.5 837.5,343.5 770.5,343.5 770.5,274.5 740.5,274.5" fill="#A8D299" stroke="black"/>
-<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="14" letter-spacing="0em"><tspan x="747" y="244.273">11а</tspan></text>
+<text id="11а" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="788" y="270.273">11а</tspan></text>
 </g>
 <g id="room-12">
 <rect id="room-12_2" x="770.5" y="112.5" width="67" height="96" fill="#A8D299" stroke="black"/>
