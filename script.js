@@ -568,6 +568,35 @@ function translateLatinToCyrillic(text) {
     return result;
 }
 
+// Вспомогательные функции для чисел/валют
+function parseNumeric(value) {
+    if (value === null || value === undefined) return null;
+    // Принимаем строки вида "67 795,00", "11345.5", "11 345,50 руб." и т.д.
+    const cleaned = String(value)
+        .replace(/[^0-9,\.\-]/g, '') // оставляем только цифры, запятую, точку, минус
+        .replace(/,(?=\d{3}(\D|$))/g, '') // защита от запятых как тысячных разделителей
+        .replace(/\s+/g, '')
+        .replace(',', '.');
+    const num = parseFloat(cleaned);
+    return Number.isFinite(num) ? num : null;
+}
+
+function formatRubPerSqm(value) {
+    try {
+        return value.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' руб./м²';
+    } catch (_) {
+        return value + ' руб./м²';
+    }
+}
+
+function computePricePerSqm(roomData) {
+    if (!roomData) return null;
+    const rentVal = parseNumeric(roomData.rent);
+    const contractAreaVal = parseNumeric(roomData.contractArea);
+    if (!rentVal || !contractAreaVal || contractAreaVal === 0) return null;
+    return rentVal / contractAreaVal;
+}
+
 // Функция для проверки, находится ли помещение в списке тех, что должны быть отображены синим цветом
 function shouldBeBlue(roomNumber, building, floor) {
     // Проверяем наличие конфигурации
@@ -828,6 +857,10 @@ function displayRoomInfo(roomId) {
                 if (blueData.contractArea) {
                     html += `<p><strong>Площадь по договору:</strong> ${blueData.contractArea}</p>`;
                 }
+                const price = computePricePerSqm(blueData);
+                if (price !== null) {
+                    html += `<p><strong>Стоимость квадратного метра:</strong> ${formatRubPerSqm(price)}</p>`;
+                }
             }
             roomDetails.innerHTML = html;
             return;
@@ -922,6 +955,12 @@ function displayRoomInfoData(roomNumber, roomData, activeBuilding) {
             if (roomData.contractArea) {
                 html += `<p><strong>Площадь по договору:</strong> ${roomData.contractArea}</p>`;
             }
+        }
+
+        // Стоимость квадратного метра: Сумма / Площадь по договору
+        const price = computePricePerSqm(roomData);
+        if (price !== null) {
+            html += `<p><strong>Стоимость квадратного метра:</strong> ${formatRubPerSqm(price)}</p>`;
         }
         
         roomDetails.innerHTML = html;
