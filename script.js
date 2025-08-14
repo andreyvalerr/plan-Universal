@@ -807,12 +807,28 @@ function displayRoomInfo(roomId) {
         
         // Если помещение из конфигурации (синее), показываем соответствующую информацию
         if (isBlueRoom) {
-            const html = `
+            // Попробуем найти запись в данных, чтобы показать площади, если они есть
+            const blueData = roomsData.find(room => {
+                const normalizedNumber = normalizeRoomNumber(room.number);
+                const buildingMatch = (room.building === activeBuilding || room.building === `building-${activeBuilding}` || !room.building);
+                const floorMatch = room.floor === currentFloor || room.floor === currentFloor.replace(/^floor-?/, 'floor-');
+                return normalizedNumber === normalizedRoomNumber && floorMatch && buildingMatch;
+            });
+
+            let html = `
                 <p><strong>Номер помещения:</strong> ${roomNumber}</p>
                 <p><strong>Здание:</strong> ${activeBuilding}</p>
                 <p><strong>Этаж:</strong> ${currentFloor.replace('floor-', '') === '0' ? 'Подвал' : currentFloor.replace('floor-', '') + ' этаж'}</p>
                 <p><strong>Статус:</strong> <span style="color: #0000FF; font-weight: bold;">Помещение Унивесала</span></p>
             `;
+            if (blueData) {
+                if (blueData.area) {
+                    html += `<p><strong>Площадь:</strong> ${blueData.area}</p>`;
+                }
+                if (blueData.contractArea) {
+                    html += `<p><strong>Площадь по договору:</strong> ${blueData.contractArea}</p>`;
+                }
+            }
             roomDetails.innerHTML = html;
             return;
         }
@@ -896,6 +912,16 @@ function displayRoomInfoData(roomNumber, roomData, activeBuilding) {
             html += `<p><strong>Арендатор:</strong> ${roomData.tenant}</p>`;
             html += `<p><strong>Договор:</strong> ${roomData.contract || 'Нет данных'}</p>`;
             html += `<p><strong>Арендная плата:</strong> ${roomData.rent || 'Нет данных'} руб./мес.</p>`;
+        }
+
+        // Площадь и Площадь по договору (показываем, если присутствуют в данных)
+        if (roomData && (roomData.area || roomData.contractArea)) {
+            if (roomData.area) {
+                html += `<p><strong>Площадь:</strong> ${roomData.area}</p>`;
+            }
+            if (roomData.contractArea) {
+                html += `<p><strong>Площадь по договору:</strong> ${roomData.contractArea}</p>`;
+            }
         }
         
         roomDetails.innerHTML = html;

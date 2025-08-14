@@ -71,6 +71,9 @@ function parseExcelToRooms(array $rows) {
     $contractIndex = array_search('Договор', $headers);
     $rentIndex     = array_search('Сумма', $headers);
     $statusIndex   = array_search('Статус', $headers);
+    // Новые поля: Площадь и Площадь по договору
+    $areaIndex           = array_search('Площадь', $headers);
+    $contractAreaIndex   = array_search('Площадь по договору', $headers);
 
     // Частичные совпадения, если точных заголовков нет
     if ($objectIndex === false) {
@@ -91,6 +94,21 @@ function parseExcelToRooms(array $rows) {
     if ($statusIndex === false) {
         foreach ($headers as $idx => $h) {
             if ($h !== '' && mb_stripos($h, 'статус') !== false) { $statusIndex = $idx; break; }
+        }
+    }
+    // Эвристики для поиска колонок площадей, если точных заголовков нет
+    if ($areaIndex === false || $contractAreaIndex === false) {
+        foreach ($headers as $idx => $h) {
+            $hl = $h !== '' ? mb_strtolower($h, 'UTF-8') : '';
+            if ($hl === '') continue;
+            if (mb_stripos($hl, 'площад') !== false) {
+                // Если указание на договор присутствует — это договорная площадь
+                if (mb_stripos($hl, 'догов') !== false || mb_stripos($hl, 'по дог') !== false) {
+                    if ($contractAreaIndex === false) { $contractAreaIndex = $idx; }
+                } else {
+                    if ($areaIndex === false) { $areaIndex = $idx; }
+                }
+            }
         }
     }
 
@@ -149,10 +167,12 @@ function parseExcelToRooms(array $rows) {
         }
 
         // Значения
-        $tenant   = ($tenantIndex !== false && isset($row[$tenantIndex]))     ? normalizeString($row[$tenantIndex])   : '';
-        $contract = ($contractIndex !== false && isset($row[$contractIndex])) ? normalizeString($row[$contractIndex]) : '';
-        $rent     = ($rentIndex !== false && isset($row[$rentIndex]))         ? normalizeString($row[$rentIndex])     : '';
-        $status   = ($statusIndex !== false && isset($row[$statusIndex]))     ? normalizeString($row[$statusIndex])   : '';
+        $tenant        = ($tenantIndex !== false && isset($row[$tenantIndex]))             ? normalizeString($row[$tenantIndex])           : '';
+        $contract      = ($contractIndex !== false && isset($row[$contractIndex]))         ? normalizeString($row[$contractIndex])         : '';
+        $rent          = ($rentIndex !== false && isset($row[$rentIndex]))                 ? normalizeString($row[$rentIndex])             : '';
+        $status        = ($statusIndex !== false && isset($row[$statusIndex]))             ? normalizeString($row[$statusIndex])           : '';
+        $area          = ($areaIndex !== false && isset($row[$areaIndex]))                 ? normalizeString($row[$areaIndex])             : '';
+        $contractArea  = ($contractAreaIndex !== false && isset($row[$contractAreaIndex])) ? normalizeString($row[$contractAreaIndex])     : '';
 
         // Статус занятости: по статусу или факту наличия контрагента
         $isOccupied = false;
@@ -170,6 +190,9 @@ function parseExcelToRooms(array $rows) {
             'tenant'   => $isOccupied ? ($tenant ?: null) : null,
             'contract' => $isOccupied ? ($contract ?: null) : null,
             'rent'     => $isOccupied ? ($rent ?: null) : null,
+            // Площади передаем как есть (могут содержать единицы измерения), независимо от статуса
+            'area'          => ($area !== '') ? $area : null,
+            'contractArea'  => ($contractArea !== '') ? $contractArea : null,
         ];
     }
 
