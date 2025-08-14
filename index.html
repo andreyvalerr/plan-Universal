@@ -146,6 +146,16 @@
             <!-- Легенда и информация о помещении перенесены под схему -->
         </main>
         
+        <!-- Загрузка файла Excel и управление данными -->
+        <div class="data-panel">
+            <h2>Импорт данных из Excel</h2>
+            <form id="upload-form">
+                <input type="file" id="excel-file" name="file" accept=".xls,.xlsx" required />
+                <button type="submit">Загрузить и обновить</button>
+                <span id="upload-status" class="upload-status"></span>
+            </form>
+        </div>
+
         <!-- Легенда и информация перенесены сюда (под схему) -->
         <div class="under-map-info">
             <!-- Легенда -->
@@ -175,11 +185,11 @@
         </div>
         
         <!-- Таблица Google Sheets -->
+        <!-- Таблица исходного Excel (последний загруженный файл) -->
         <section class="google-sheets-container">
-            <h2>Реестр помещений</h2>
+            <h2>Просмотр исходной таблицы</h2>
             <div class="iframe-container">
-                <!-- Здесь будет iframe с встроенной Google Таблицей -->
-                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSlxs2634IrcKbOFIO81ivAPCp3xXesYIklAACay3luOG29j7JwapPutj5cvRLqjGXMzjR9rLWt5GWq/pubhtml?widget=true&amp;headers=false"></iframe>
+                <iframe src="table.php"></iframe>
             </div>
         </section>
     </div>

@@ -7,11 +7,15 @@ Options -Indexes
 # Кодировка по умолчанию
 AddDefaultCharset UTF-8
 
-# Запрет доступа к API файлам (если необходимо)
+# Запрет прямого доступа к скрипту Google Apps Script (устарело)
 <FilesMatch "google-apps-script\.js$">
-    Order Allow,Deny
-    Deny from all
+    Require all denied
 </FilesMatch>
+
+# Разрешаем загрузку файлов в /uploads и доступ к API
+<Files "api.php">
+    Require all granted
+</Files>
 
 # Сообщение об ошибке 404
 ErrorDocument 404 /login.html 

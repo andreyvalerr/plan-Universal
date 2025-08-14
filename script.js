@@ -33,7 +33,8 @@ function checkAuth() {
 }
 
 // Константы и переменные
-const API_URL = 'https://script.google.com/macros/s/AKfycbxxspvJAMjDrbe85Z-A-cKUmkp0Z7JgicE27I_VOLKxUeazBqkSm5yBmGHRh18gR0ZfmQ/exec'; // URL Google Apps Script
+// Новый API на нашем сервере для загрузки и получения данных из Excel
+const API_URL = 'api.php';
 let roomsData = []; // Данные о помещениях из Google Sheets
 let currentBuilding = 'building-19';
 let currentFloor = 'floor-1';
@@ -162,8 +163,8 @@ async function init() {
             // Настраиваем обработчики событий
             setupEventListeners();
             
-            // Загружаем данные из Google Sheets
-            await fetchDataFromGoogleSheets();
+            // Загружаем данные с нашего сервера (последние импортированные из Excel)
+            await fetchDataFromServer();
             
             // Обновляем статусы помещений
             updateRoomStatus();
@@ -454,18 +455,18 @@ function updateActiveMap() {
     }
 }
 
-// Загрузка данных из Google Sheets через Apps Script
-async function fetchDataFromGoogleSheets() {
+// Загрузка данных с нашего сервера (последний импортированный набор)
+async function fetchDataFromServer() {
     try {
         if (!API_URL) {
-            console.warn('URL Google Apps Script не указан');
+            console.warn('URL API не указан');
             // Используем тестовые данные для демонстрации
             roomsData = getMockData();
             updateRoomStatus(); // Обновляем после загрузки тестовых данных
             return;
         }
         
-        console.log('Загрузка данных из Google Sheets...');
+        console.log('Загрузка данных с сервера...');
         const response = await fetch(API_URL);
         
         if (!response.ok) {
@@ -474,7 +475,7 @@ async function fetchDataFromGoogleSheets() {
         
         const data = await response.json();
         console.log('Полученные данные:', data);
-        roomsData = data;
+        roomsData = Array.isArray(data) ? data : (Array.isArray(data.data) ? data.data : []);
         
         // Обновляем статусы помещений на схеме
         updateRoomStatus();
@@ -488,7 +489,7 @@ async function fetchDataFromGoogleSheets() {
             updateSpecialRoomsHighlight();
         }, 300);
     } catch (error) {
-        console.error('Ошибка при получении данных из Google Sheets:', error);
+        console.error('Ошибка при получении данных с сервера:', error);
         // Используем тестовые данные при ошибке
         roomsData = getMockData();
         updateRoomStatus();
@@ -499,6 +500,39 @@ async function fetchDataFromGoogleSheets() {
         }, 300);
     }
 }
+
+// Обработчик загрузки Excel
+document.addEventListener('DOMContentLoaded', () => {
+    const uploadForm = document.getElementById('upload-form');
+    const fileInput = document.getElementById('excel-file');
+    const statusEl = document.getElementById('upload-status');
+
+    if (uploadForm && fileInput) {
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!fileInput.files || fileInput.files.length === 0) return;
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            statusEl.textContent = 'Загрузка...';
+            try {
+                const resp = await fetch(API_URL, { method: 'POST', body: formData });
+                const data = await resp.json();
+                if (!resp.ok) {
+                    throw new Error(data && data.error ? data.error : 'Ошибка загрузки');
+                }
+                roomsData = Array.isArray(data) ? data : (Array.isArray(data.data) ? data.data : []);
+                statusEl.textContent = 'Готово. Данные обновлены.';
+                updateRoomStatus();
+                updateSpecialRoomsHighlight();
+            } catch (err) {
+                console.error(err);
+                statusEl.textContent = 'Ошибка: ' + err.message;
+            }
+        });
+    }
+});
 
 // Универсальная функция для "очистки" номера помещения (оставляет только цифры и буквы)
 function normalizeRoomNumber(str) {
@@ -674,9 +708,9 @@ function updateRoomStatus() {
             // Сначала ищем точное совпадение (здание + этаж + номер)
             const roomData = roomsData.find(room => {
                 const normalizedRoomNum = normalizeRoomNumber(room.number);
-                return normalizedRoomNum === normalizedRoomNumber && 
-                      room.floor === currentFloor && 
-                      (room.building === activeBuilding || !room.building);
+                const buildingMatch = (room.building === activeBuilding || room.building === `building-${activeBuilding}` || !room.building);
+                const floorMatch = room.floor === currentFloor || room.floor === currentFloor.replace(/^floor-?/, 'floor-');
+                return normalizedRoomNum === normalizedRoomNumber && floorMatch && buildingMatch;
             });
             
             // Определяем цвет и статус помещения
@@ -793,10 +827,9 @@ function displayRoomInfo(roomId) {
     // Сначала ищем точное совпадение (более надежный способ)
     const exactMatch = roomsData.find(room => {
         const normalizedNumber = normalizeRoomNumber(room.number);
-        // Проверяем точное совпадение номера, этажа и здания
-        return normalizedNumber === normalizedRoomNumber && 
-               room.floor === currentFloor && 
-               (room.building === activeBuilding || !room.building);
+        const buildingMatch = (room.building === activeBuilding || room.building === `building-${activeBuilding}` || !room.building);
+        const floorMatch = room.floor === currentFloor || room.floor === currentFloor.replace(/^floor-?/, 'floor-');
+        return normalizedNumber === normalizedRoomNumber && floorMatch && buildingMatch;
     });
     
     // Если найдено точное совпадение, используем его

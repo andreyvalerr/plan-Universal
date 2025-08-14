@@ -9,8 +9,12 @@ $isLoginPage = (strpos($_SERVER['REQUEST_URI'], 'login.html') !== false);
 // Не перенаправляем запросы к SVG-файлам, находящимся в папке floor_plan_svg
 $isSvgFile = (strpos($_SERVER['REQUEST_URI'], 'floor_plan_svg/') !== false && strpos($_SERVER['REQUEST_URI'], '.svg') !== false);
 
+// Разрешаем доступ к API (обработка загрузки Excel) только для авторизованных, 
+// но не перенаправляем, чтобы API мог вернуть 401 JSON, а не HTML.
+$isApiRequest = (strpos($_SERVER['REQUEST_URI'], '/api.php') !== false);
+
 // Проверяем авторизацию только если это не страница входа и не SVG-файл
-if (!$isLoginPage && !$isSvgFile) {
+if (!$isLoginPage && !$isSvgFile && !$isApiRequest) {
     // Если пользователь не авторизован через PHP сессию
     if (!isset($_SESSION['isAuthenticated']) || $_SESSION['isAuthenticated'] !== true) {
         // Перенаправляем на страницу входа

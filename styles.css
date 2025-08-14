@@ -138,6 +138,34 @@ main {
     margin-bottom: 30px;
 }
 
+.data-panel {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.data-panel h2 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+#upload-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#excel-file {
+    padding: 6px;
+}
+
+.upload-status {
+    font-size: 0.9rem;
+}
+
 .map-container {
     width: 100%;
     min-height: 500px;
