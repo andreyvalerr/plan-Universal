@@ -33,7 +33,8 @@ function checkAuth() {
 }
 
 // Константы и переменные
-const API_URL = 'https://script.google.com/macros/s/AKfycbxxspvJAMjDrbe85Z-A-cKUmkp0Z7JgicE27I_VOLKxUeazBqkSm5yBmGHRh18gR0ZfmQ/exec'; // URL Google Apps Script
+// Новый API на нашем сервере для загрузки и получения данных из Excel
+const API_URL = 'api.php';
 let roomsData = []; // Данные о помещениях из Google Sheets
 let currentBuilding = 'building-19';
 let currentFloor = 'floor-1';
@@ -162,8 +163,8 @@ async function init() {
             // Настраиваем обработчики событий
             setupEventListeners();
             
-            // Загружаем данные из Google Sheets
-            await fetchDataFromGoogleSheets();
+            // Загружаем данные с нашего сервера (последние импортированные из Excel)
+            await fetchDataFromServer();
             
             // Обновляем статусы помещений
             updateRoomStatus();
@@ -454,18 +455,18 @@ function updateActiveMap() {
     }
 }
 
-// Загрузка данных из Google Sheets через Apps Script
-async function fetchDataFromGoogleSheets() {
+// Загрузка данных с нашего сервера (последний импортированный набор)
+async function fetchDataFromServer() {
     try {
         if (!API_URL) {
-            console.warn('URL Google Apps Script не указан');
+            console.warn('URL API не указан');
             // Используем тестовые данные для демонстрации
             roomsData = getMockData();
             updateRoomStatus(); // Обновляем после загрузки тестовых данных
             return;
         }
         
-        console.log('Загрузка данных из Google Sheets...');
+        console.log('Загрузка данных с сервера...');
         const response = await fetch(API_URL);
         
         if (!response.ok) {
@@ -474,7 +475,7 @@ async function fetchDataFromGoogleSheets() {
         
         const data = await response.json();
         console.log('Полученные данные:', data);
-        roomsData = data;
+        roomsData = Array.isArray(data) ? data : (Array.isArray(data.data) ? data.data : []);
         
         // Обновляем статусы помещений на схеме
         updateRoomStatus();
@@ -488,7 +489,7 @@ async function fetchDataFromGoogleSheets() {
             updateSpecialRoomsHighlight();
         }, 300);
     } catch (error) {
-        console.error('Ошибка при получении данных из Google Sheets:', error);
+        console.error('Ошибка при получении данных с сервера:', error);
         // Используем тестовые данные при ошибке
         roomsData = getMockData();
         updateRoomStatus();
@@ -499,6 +500,39 @@ async function fetchDataFromGoogleSheets() {
         }, 300);
     }
 }
+
+// Обработчик загрузки Excel
+document.addEventListener('DOMContentLoaded', () => {
+    const uploadForm = document.getElementById('upload-form');
+    const fileInput = document.getElementById('excel-file');
+    const statusEl = document.getElementById('upload-status');
+
+    if (uploadForm && fileInput) {
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!fileInput.files || fileInput.files.length === 0) return;
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            statusEl.textContent = 'Загрузка...';
+            try {
+                const resp = await fetch(API_URL, { method: 'POST', body: formData });
+                const data = await resp.json();
+                if (!resp.ok) {
+                    throw new Error(data && data.error ? data.error : 'Ошибка загрузки');
+                }
+                roomsData = Array.isArray(data) ? data : (Array.isArray(data.data) ? data.data : []);
+                statusEl.textContent = 'Готово. Данные обновлены.';
+                updateRoomStatus();
+                updateSpecialRoomsHighlight();
+            } catch (err) {
+                console.error(err);
+                statusEl.textContent = 'Ошибка: ' + err.message;
+            }
+        });
+    }
+});
 
 // Универсальная функция для "очистки" номера помещения (оставляет только цифры и буквы)
 function normalizeRoomNumber(str) {
@@ -532,6 +566,35 @@ function translateLatinToCyrillic(text) {
     }
     
     return result;
+}
+
+// Вспомогательные функции для чисел/валют
+function parseNumeric(value) {
+    if (value === null || value === undefined) return null;
+    // Принимаем строки вида "67 795,00", "11345.5", "11 345,50 руб." и т.д.
+    const cleaned = String(value)
+        .replace(/[^0-9,\.\-]/g, '') // оставляем только цифры, запятую, точку, минус
+        .replace(/,(?=\d{3}(\D|$))/g, '') // защита от запятых как тысячных разделителей
+        .replace(/\s+/g, '')
+        .replace(',', '.');
+    const num = parseFloat(cleaned);
+    return Number.isFinite(num) ? num : null;
+}
+
+function formatRubPerSqm(value) {
+    try {
+        return value.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' руб./м²';
+    } catch (_) {
+        return value + ' руб./м²';
+    }
+}
+
+function computePricePerSqm(roomData) {
+    if (!roomData) return null;
+    const rentVal = parseNumeric(roomData.rent);
+    const contractAreaVal = parseNumeric(roomData.contractArea);
+    if (!rentVal || !contractAreaVal || contractAreaVal === 0) return null;
+    return rentVal / contractAreaVal;
 }
 
 // Функция для проверки, находится ли помещение в списке тех, что должны быть отображены синим цветом
@@ -674,9 +737,9 @@ function updateRoomStatus() {
             // Сначала ищем точное совпадение (здание + этаж + номер)
             const roomData = roomsData.find(room => {
                 const normalizedRoomNum = normalizeRoomNumber(room.number);
-                return normalizedRoomNum === normalizedRoomNumber && 
-                      room.floor === currentFloor && 
-                      (room.building === activeBuilding || !room.building);
+                const buildingMatch = (room.building === activeBuilding || room.building === `building-${activeBuilding}` || !room.building);
+                const floorMatch = room.floor === currentFloor || room.floor === currentFloor.replace(/^floor-?/, 'floor-');
+                return normalizedRoomNum === normalizedRoomNumber && floorMatch && buildingMatch;
             });
             
             // Определяем цвет и статус помещения
@@ -773,12 +836,32 @@ function displayRoomInfo(roomId) {
         
         // Если помещение из конфигурации (синее), показываем соответствующую информацию
         if (isBlueRoom) {
-            const html = `
+            // Попробуем найти запись в данных, чтобы показать площади, если они есть
+            const blueData = roomsData.find(room => {
+                const normalizedNumber = normalizeRoomNumber(room.number);
+                const buildingMatch = (room.building === activeBuilding || room.building === `building-${activeBuilding}` || !room.building);
+                const floorMatch = room.floor === currentFloor || room.floor === currentFloor.replace(/^floor-?/, 'floor-');
+                return normalizedNumber === normalizedRoomNumber && floorMatch && buildingMatch;
+            });
+
+            let html = `
                 <p><strong>Номер помещения:</strong> ${roomNumber}</p>
                 <p><strong>Здание:</strong> ${activeBuilding}</p>
                 <p><strong>Этаж:</strong> ${currentFloor.replace('floor-', '') === '0' ? 'Подвал' : currentFloor.replace('floor-', '') + ' этаж'}</p>
                 <p><strong>Статус:</strong> <span style="color: #0000FF; font-weight: bold;">Помещение Унивесала</span></p>
             `;
+            if (blueData) {
+                if (blueData.area) {
+                    html += `<p><strong>Площадь:</strong> ${blueData.area}</p>`;
+                }
+                if (blueData.contractArea) {
+                    html += `<p><strong>Площадь по договору:</strong> ${blueData.contractArea}</p>`;
+                }
+                const price = computePricePerSqm(blueData);
+                if (price !== null) {
+                    html += `<p><strong>Стоимость квадратного метра:</strong> ${formatRubPerSqm(price)}</p>`;
+                }
+            }
             roomDetails.innerHTML = html;
             return;
         }
@@ -793,10 +876,9 @@ function displayRoomInfo(roomId) {
     // Сначала ищем точное совпадение (более надежный способ)
     const exactMatch = roomsData.find(room => {
         const normalizedNumber = normalizeRoomNumber(room.number);
-        // Проверяем точное совпадение номера, этажа и здания
-        return normalizedNumber === normalizedRoomNumber && 
-               room.floor === currentFloor && 
-               (room.building === activeBuilding || !room.building);
+        const buildingMatch = (room.building === activeBuilding || room.building === `building-${activeBuilding}` || !room.building);
+        const floorMatch = room.floor === currentFloor || room.floor === currentFloor.replace(/^floor-?/, 'floor-');
+        return normalizedNumber === normalizedRoomNumber && floorMatch && buildingMatch;
     });
     
     // Если найдено точное совпадение, используем его
@@ -863,6 +945,22 @@ function displayRoomInfoData(roomNumber, roomData, activeBuilding) {
             html += `<p><strong>Арендатор:</strong> ${roomData.tenant}</p>`;
             html += `<p><strong>Договор:</strong> ${roomData.contract || 'Нет данных'}</p>`;
             html += `<p><strong>Арендная плата:</strong> ${roomData.rent || 'Нет данных'} руб./мес.</p>`;
+        }
+
+        // Площадь и Площадь по договору (показываем, если присутствуют в данных)
+        if (roomData && (roomData.area || roomData.contractArea)) {
+            if (roomData.area) {
+                html += `<p><strong>Площадь:</strong> ${roomData.area}</p>`;
+            }
+            if (roomData.contractArea) {
+                html += `<p><strong>Площадь по договору:</strong> ${roomData.contractArea}</p>`;
+            }
+        }
+
+        // Стоимость квадратного метра: Сумма / Площадь по договору
+        const price = computePricePerSqm(roomData);
+        if (price !== null) {
+            html += `<p><strong>Стоимость квадратного метра:</strong> ${formatRubPerSqm(price)}</p>`;
         }
         
         roomDetails.innerHTML = html;

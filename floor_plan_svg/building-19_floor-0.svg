@@ -23,7 +23,14 @@
 <path fill-rule="evenodd" clip-rule="evenodd" d="M838 209H741V274H770V344H1148V274H838V209Z" fill="#D9D9D9"/>
 <path d="M741 209V208H740V209H741ZM838 209H839V208H838V209ZM741 274H740V275H741V274ZM770 274H771V273H770V274ZM770 344H769V345H770V344ZM1148 344V345H1149V344H1148ZM1148 274H1149V273H1148V274ZM838 274H837V275H838V274ZM741 210H838V208H741V210ZM742 274V209H740V274H742ZM770 273H741V275H770V273ZM771 344V274H769V344H771ZM1148 343H770V345H1148V343ZM1147 274V344H1149V274H1147ZM838 275H1148V273H838V275ZM837 209V274H839V209H837Z" fill="black" mask="url(#path-9-inside-1_10_402)"/>
 </g>
-<rect id="corridor_2" x="770.5" y="112.5" width="67" height="96" fill="#D9D9D9" stroke="black"/>
+<g id="room-11a">
+<polygon points="740.5,209.5 837.5,209.5 837.5,343.5 770.5,343.5 770.5,274.5 740.5,274.5" fill="#A8D299" stroke="black"/>
+<text id="11а" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="788" y="270.273">11а</tspan></text>
+</g>
+<g id="room-12">
+<rect id="room-12_2" x="770.5" y="112.5" width="67" height="96" fill="#A8D299" stroke="black"/>
+<text id="12" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="794" y="163.273">12</tspan></text>
+</g>
 <g id="room-12a">
 <rect id="room-12a_2" x="838.5" y="112.5" width="219" height="161" fill="#A8D299" stroke="black"/>
 <text id="12a" fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="931" y="168.273">12а</tspan></text>
