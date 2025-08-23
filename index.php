@@ -56,6 +56,13 @@ if (file_exists($filePath) && is_file($filePath)) {
         header('Content-Type: ' . $mimeTypes[$extension]);
     }
     
+    // Для SVG отключаем кэширование, чтобы изменения были видны сразу
+    if ($extension === 'svg') {
+        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+    }
+    
     readfile($filePath);
     exit;
 }

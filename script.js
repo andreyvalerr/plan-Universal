@@ -185,7 +185,9 @@ async function loadSVG(filename) {
         // Добавляем путь к папке с SVG-файлами
         const filePath = `floor_plan_svg/${filename}`;
         console.log(`Загрузка SVG-файла: ${filePath}`);
-        const response = await fetch(filePath);
+        // Добавляем параметр для инвалидации кэша браузера
+        const cacheBustedUrl = `${filePath}?nocache=${Date.now()}`;
+        const response = await fetch(cacheBustedUrl);
         if (!response.ok) {
             throw new Error(`Не удалось загрузить SVG: ${response.status}`);
         }
