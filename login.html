@@ -72,10 +72,18 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Проверка, если пользователь уже авторизован
-            if (localStorage.getItem('isAuthenticated') === 'true') {
-                window.location.href = 'index.html';
-            }
+            // Быстрая проверка серверной сессии: если авторизован — на главную
+            fetch('api.php', { method: 'GET', credentials: 'same-origin' })
+                .then(r => {
+                    if (r.ok) {
+                        // Серверная сессия активна, отметим клиента и перейдём на главную
+                        localStorage.setItem('isAuthenticated', 'true');
+                        const username = localStorage.getItem('username') || 'admin';
+                        localStorage.setItem('username', username);
+                        window.location.href = 'index.html';
+                    }
+                })
+                .catch(() => {});
             
             const loginForm = document.getElementById('login-form');
             const errorMessage = document.getElementById('error-message');

@@ -1,5 +1,12 @@
-# Установка главной страницы
-DirectoryIndex login.html index.html
+# Установка главной страницы (отдаём через PHP-роутер)
+DirectoryIndex index.php login.html index.html
+
+# Включаем mod_rewrite
+RewriteEngine On
+
+# Перенаправляем прямые запросы к index.html на корень (index.php)
+RewriteCond %{THE_REQUEST} \s/+index\.html [NC]
+RewriteRule ^index\.html$ index.php [R=301,L]
 
 # Запрет на просмотр каталогов
 Options -Indexes

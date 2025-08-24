@@ -3,6 +3,10 @@
 // Примечание: это дополнение к клиентской проверке через localStorage
 session_start();
 
+require_once __DIR__ . '/auth.php';
+// Если сессии нет — попытаться поднять по remember_me
+ensureSessionFromRememberMe();
+
 // Если страница - login.html, то не делаем перенаправление, чтобы избежать бесконечной петли
 $isLoginPage = (strpos($_SERVER['REQUEST_URI'], 'login.html') !== false);
 
@@ -12,11 +16,13 @@ $isSvgFile = (strpos($_SERVER['REQUEST_URI'], 'floor_plan_svg/') !== false && st
 // Разрешаем доступ к API (обработка загрузки Excel) только для авторизованных, 
 // но не перенаправляем, чтобы API мог вернуть 401 JSON, а не HTML.
 $isApiRequest = (strpos($_SERVER['REQUEST_URI'], '/api.php') !== false);
+// Разрешаем доступ к проверке сессии без редиректа
+$isSessionCheck = (strpos($_SERVER['REQUEST_URI'], '/session.php') !== false);
 
 // Проверяем авторизацию только если это не страница входа и не SVG-файл
-if (!$isLoginPage && !$isSvgFile && !$isApiRequest) {
+if (!$isLoginPage && !$isSvgFile && !$isApiRequest && !$isSessionCheck) {
     // Если пользователь не авторизован через PHP сессию
-    if (!isset($_SESSION['isAuthenticated']) || $_SESSION['isAuthenticated'] !== true) {
+    if (!isAuthenticated()) {
         // Перенаправляем на страницу входа
         header('Location: login.html');
         exit;

@@ -4,8 +4,12 @@
 
 session_start();
 
+require_once __DIR__ . '/auth.php';
+// Поднимаем сессию по remember_me при необходимости
+ensureSessionFromRememberMe();
+
 // Защищаем API: требуется авторизация через PHP-сессию
-if (!isset($_SESSION['isAuthenticated']) || $_SESSION['isAuthenticated'] !== true) {
+if (!isAuthenticated()) {
     http_response_code(401);
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode(['error' => 'Unauthorized']);

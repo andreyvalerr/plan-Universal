@@ -1,35 +1,55 @@
 // Проверка авторизации
 document.addEventListener('DOMContentLoaded', checkAuth);
 
-function checkAuth() {
-    // Проверяем, авторизован ли пользователь
-    if (localStorage.getItem('isAuthenticated') !== 'true') {
-        // Если нет - перенаправляем на страницу входа
+async function checkAuth() {
+    try {
+        // Если в localStorage нет отметки, перепроверим серверную сессию
+        if (localStorage.getItem('isAuthenticated') !== 'true') {
+            try {
+                const resp = await fetch(API_URL, { method: 'GET', credentials: 'same-origin' });
+                if (resp.ok) {
+                    // Сервер подтвердил авторизацию — проставим локально
+                    localStorage.setItem('isAuthenticated', 'true');
+                    if (!localStorage.getItem('username')) {
+                        localStorage.setItem('username', 'admin');
+                    }
+                } else {
+                    // Нет серверной сессии — уводим на логин
+                    window.location.href = 'login.html';
+                    return;
+                }
+            } catch (_) {
+                // Сеть/ошибка — уводим на логин, чтобы не зависнуть в промежуточном состоянии
+                window.location.href = 'login.html';
+                return;
+            }
+        }
+
+        // Отображаем имя пользователя
+        const usernameElement = document.getElementById('username');
+        if (usernameElement) {
+            usernameElement.textContent = localStorage.getItem('username') || 'admin';
+        }
+
+        // Добавляем обработчик для кнопки выхода
+        const logoutButton = document.getElementById('logout-button');
+        if (logoutButton) {
+            logoutButton.addEventListener('click', function() {
+                // Удаляем данные авторизации в localStorage
+                localStorage.removeItem('isAuthenticated');
+                localStorage.removeItem('username');
+
+                // Перенаправляем на PHP-скрипт для уничтожения сессии
+                window.location.href = 'logout.php';
+            });
+        }
+
+        // Если авторизован - запускаем приложение
+        init();
+    } catch (e) {
+        console.error('Ошибка при проверке авторизации:', e);
         window.location.href = 'login.html';
-        return;
     }
-    
-    // Отображаем имя пользователя
-    const usernameElement = document.getElementById('username');
-    if (usernameElement) {
-        usernameElement.textContent = localStorage.getItem('username') || 'admin';
-    }
-    
-    // Добавляем обработчик для кнопки выхода
-    const logoutButton = document.getElementById('logout-button');
-    if (logoutButton) {
-        logoutButton.addEventListener('click', function() {
-            // Удаляем данные авторизации в localStorage
-            localStorage.removeItem('isAuthenticated');
-            localStorage.removeItem('username');
-            
-            // Перенаправляем на PHP-скрипт для уничтожения сессии
-            window.location.href = 'logout.php';
-        });
-    }
-    
-    // Если авторизован - запускаем приложение
-    init();
 }
 
 // Константы и переменные

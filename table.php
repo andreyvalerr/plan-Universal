@@ -3,6 +3,8 @@
 // Требует: libs/SimpleXLSX.php и libs/SimpleXLS.php
 
 session_start();
+require_once __DIR__ . '/auth.php';
+ensureSessionFromRememberMe();
 if (!isset($_SESSION['isAuthenticated']) || $_SESSION['isAuthenticated'] !== true) {
     http_response_code(401);
     header('Content-Type: text/plain; charset=utf-8');

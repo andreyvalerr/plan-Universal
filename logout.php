@@ -2,6 +2,8 @@
 // Начинаем сессию
 session_start();
 
+require_once __DIR__ . '/auth.php';
+
 // Очищаем все переменные сессии
 $_SESSION = array();
 
@@ -16,6 +18,9 @@ if (ini_get("session.use_cookies")) {
 
 // Уничтожаем сессию
 session_destroy();
+
+// Чистим remember-me cookie
+clearRememberMeCookie();
 
 // Перенаправляем на страницу входа
 header('Location: login.html');
