@@ -7,42 +7,48 @@ require_once __DIR__ . '/auth.php';
 // Если сессии нет — попытаться поднять по remember_me
 ensureSessionFromRememberMe();
 
+// Нормализуем базовый путь приложения и путь запроса
+$basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+$requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
 // Если страница - login.html, то не делаем перенаправление, чтобы избежать бесконечной петли
-$isLoginPage = (strpos($_SERVER['REQUEST_URI'], 'login.html') !== false);
+$isLoginPage = (strpos($requestPath, 'login.html') !== false);
 
 // Не перенаправляем запросы к SVG-файлам, находящимся в папке floor_plan_svg
-$isSvgFile = (strpos($_SERVER['REQUEST_URI'], 'floor_plan_svg/') !== false && strpos($_SERVER['REQUEST_URI'], '.svg') !== false);
+$isSvgFile = (strpos($requestPath, 'floor_plan_svg/') !== false && strpos($requestPath, '.svg') !== false);
 
 // Разрешаем доступ к API (обработка загрузки Excel) только для авторизованных, 
 // но не перенаправляем, чтобы API мог вернуть 401 JSON, а не HTML.
-$isApiRequest = (strpos($_SERVER['REQUEST_URI'], '/api.php') !== false);
+$isApiRequest = (strpos($requestPath, '/api.php') !== false);
 // Разрешаем доступ к проверке сессии без редиректа
-$isSessionCheck = (strpos($_SERVER['REQUEST_URI'], '/session.php') !== false);
+$isSessionCheck = (strpos($requestPath, '/session.php') !== false);
 
 // Проверяем авторизацию только если это не страница входа и не SVG-файл
 if (!$isLoginPage && !$isSvgFile && !$isApiRequest && !$isSessionCheck) {
     // Если пользователь не авторизован через PHP сессию
     if (!isAuthenticated()) {
         // Перенаправляем на страницу входа
-        header('Location: login.html');
+        $loginUrl = ($basePath !== '' ? $basePath : '') . '/login.html';
+        header('Location: ' . $loginUrl);
         exit;
     }
 }
 
-// Проверяем, какой файл запросили
-$requestedFile = $_SERVER['REQUEST_URI'];
-
-// Если запрос к корню сайта или к index.html/index.php
-if ($requestedFile == '/' || 
-    $requestedFile == '/index.html' || 
-    $requestedFile == '/index.php') {
-    // Показываем index.html
+// Если запрос к корню приложения или к index.html/index.php внутри подкаталога — отдаём index.html
+if (
+    $requestPath === $basePath . '/' ||
+    $requestPath === $basePath ||
+    $requestPath === $basePath . '/index.html' ||
+    $requestPath === $basePath . '/index.php'
+) {
     include('index.html');
     exit;
 }
 
 // Если запрос к другому файлу (style.css, script.js, svg и т.д.), показываем его
-$filePath = __DIR__ . $requestedFile;
+// Строим путь относительно базового префикса приложения
+$relativePath = ltrim(substr($requestPath, strlen($basePath)), '/');
+$filePath = __DIR__ . '/' . $relativePath;
 if (file_exists($filePath) && is_file($filePath)) {
     // Определение MIME-типа
     $mimeTypes = [
